@@ -13,16 +13,91 @@
     <link href="css/custom.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="container-fluid">
 
-    <header>
-    </header>
+    <!-- leftside on menu screen-->
+    <section id="menu" class="leftSide .col-md-6">
+      <div class=".col-md-12">
+        <h1>NumGuess</h1>
+      </div>
 
+      <!-- leftside on menu screen -->
+      <div> <!-- initial div -->
+        <div class="btn-group">
+        <button type="button" id="target-score" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Target Score<span class="caret"></span>
+        </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">First to 50</a></li>
+            <li><a href="#">First to 100</a></li>
+            <li><a href="#">First to 150</a></li>
+          </ul>
+        </div> <!-- btn-group div -->
+      </div> <!-- initial div -->
 
-    <section>
+      <div> <!-- initial div -->
+        <div class="btn-group">
+        <button type="button" id="sprite-size" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sprite Size<span class="caret"></span>
+        </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">3x3</a></li>
+            <li><a href="#">4x4</a></li>
+            <li><a href="#">5x5</a></li>
+          </ul>
+        </div> <!-- btn-group div -->
+      </div> <!-- initial div -->
+
+      <div> <!-- initial div -->
+        <div class="btn-group">
+        <button type="button" id="orientation" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Orientation<span class="caret"></span>
+        </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Normal</a></li>
+            <li><a href="#">Mirror</a></li>
+            <li><a href="#">Inverse</a></li>
+          </ul>
+        </div> <!-- btn-group div -->
+      </div> <!-- initial div -->
+    </section> <!-- leftSide-->
+
+    <!-- leftside during game -->
+    <section id="game" class="leftSide .col-md-6">
+      <div class=".col-md-12">
+         <h1>NumGuess</h1>
+      </div>
+      <div class="scores">
+        <div class=".col-md-4">
+          <div>Player 1 Score</div>
+        </div>
+        <div class=".col-md-4">
+          <div>Target Score</div>
+        </div>
+        <div class=".col-md-4">
+          <div>Player 2 Score</div>
+        </div>
+      </div>
+      <div class=".col-md">
+        <div>Guess</div>
+      </div>
     </section>
 
+    <!-- rightside on menu screen-->
+    <section class="rightSide .col-md-6">
+      <div id="gamescreen">
+        <div>
+          <div>Instructions</div>
+        </div>
+        <div>
+          <div>Start Button</div>
+        </div>
+      </div> <!-- gamescreen div-->
+    </section> <!-- rightSide-->
+
+    <!-- leftside during game -->
+
     <footer>
+      <div class="numbersBar .col-md-6">
+        <div>Numbers Bar</div>
+      <div>
     </footer>
 
   </body>
