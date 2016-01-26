@@ -41,7 +41,7 @@ h1 {
 .scorebox {
   background-color: green; /* remove later */
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   text-align: center;
 }
 .scorebox h1,h2 {
@@ -89,5 +89,5 @@ p { /* instructions */
   height: 200px;
   width: 200px;
   margin: 0px;
-  border: black solid 2px;
+  border: black solid 1px;
 }
