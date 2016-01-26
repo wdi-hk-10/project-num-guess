@@ -1,17 +1,5 @@
 $(document).ready(function(){ // do not remove - insert all code in here!
 
-  $('#start-button').on("click", function(){
-    $('#game-screen').show();
-    $('#play-box').show()
-    $('#instruct-screen').hide();
-    $('#options').hide()
-});
-
-  //event listener
-
-
-
-
   var threeX3 = [[1,1,1,1,0,1,1,1,1],//0
                 [1,1,0,0,1,0,1,1,1], //1
                 [1,1,0,0,1,0,1,1,1], //2
@@ -32,5 +20,21 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                 [1,1,1,0,0,1,0,1,0,0,1,0], //7
                 [1,1,1,0,1,0,1,0,1,0,1,0], //8
                 [0,1,1,1,0,1,0,1,1,0,0,1]];//9
+
+  $('#start-button').on("click", function(){
+    $('#game-screen').show();
+    $('#play-box').show();
+    $('#instruct-screen').hide();
+    $('#options').hide();
+  });
+
+
+
+
+
+
+
+
+
 
 }); // do not remove
