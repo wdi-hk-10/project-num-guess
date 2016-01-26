@@ -44,7 +44,7 @@
               <select class="selectpicker col-xs-12" title="Choose Sprite Size">
                 <option>3x3</option>
                 <option>4x4</option>
-                <option>5x5</option>
+                <option>3x6</option>
               </select>
             </div> <!-- options sprite size -->
           </div> <!-- row -->
@@ -63,7 +63,7 @@
         <!-- LEFT SIDE DURING GAME ONLY -->
         <div id="play-box" style="display: none"> <!-- style="display: none"-->
           <div class="row" id="all-scoreboxes">
-            <div id="one-score" class="scorebox col-xs-3 col-xs-push-1">
+            <div id="player-one-score" class="scorebox col-xs-3 col-xs-push-1">
               <h2>Player 1</h2>
               <h3>0</h3>
             </div> <!-- col-xs-4 -->
@@ -73,7 +73,7 @@
               <h3>0</h3>
             </div> <!-- col-xs-4 -->
 
-            <div id="two-score" class="scorebox col-xs-3 col-xs-push-1">
+            <div id="player-two-score" class="scorebox col-xs-3 col-xs-push-1">
               <h2>Player 2</h2>
               <h3>0</h3>
             </div> <!-- col-xs-4 -->
@@ -84,7 +84,7 @@
           <div class="row">
             <h1>Number Box 1</h1>
             <h1>Number Box 2</h1>
-          </div>
+          </div> <!-- row -->
         </div> <!-- play-box -->
 
       </section> <!-- left side -->
@@ -92,14 +92,53 @@
       <!-- RIGHT SIDE DURING OPTIONS ONLY -->
       <section class="right-side col-xs-6"> <!-- right-side-->
 
-        <div id="instruct-screen"> <!-- hide when game starts -->
+        <div id="instruct-screen" style="display: none"> <!-- hide when game starts -->
           <h3>Instructions</h3>
           <p>Click a square and try to guess the number hidden behind the grid. Guess correctly and score the value of the number plus one point for each remaining square uncovered.  (Eg guessing the number 7 with 4 uncovered squares would score 11 points.)  Guess incorrectly and the points are awaded to your opponent.</p>
           <button type="button" id="start-button" class="btn btn-lg btn-success">Start</button>
         </div> <!-- instruct & start -->
 
         <!-- RIGHT SIDE DURING GAME ONLY -->
-        <div id="game-screen" style="display: none"> <!-- hide when game ends -->
+        <div id="game-screen"> <!-- hide when game ends -->
+          <div class="row">
+            <div id="one" class="game-box col-xs-4">
+              <h2>1</h2>
+            </div> <!-- col-xs-4 -->
+
+            <div id="two" class="game-box col-xs-4">
+              <h2>2</h2>
+            </div> <!-- col-xs-4 -->
+
+            <div id="three" class="game-box col-xs-4">
+              <h2>3</h2>
+            </div>
+          </div> <!-- row -->
+          <div class="row">
+            <div id="four" class="game-box col-xs-4">
+              <h2>4</h2>
+            </div> <!-- col-xs-4 -->
+
+            <div id="five" class="game-box col-xs-4">
+              <h2>5</h2>
+            </div> <!-- col-xs-4 -->
+
+            <div id="six" class="game-box col-xs-4">
+              <h2>6</h2>
+            </div>
+          </div> <!-- row -->
+          <div class="row">
+             <div id="seven" class="game-box col-xs-4">
+              <h2>7</h2>
+            </div> <!-- col-xs-4 -->
+
+            <div id="eight" class="game-box col-xs-4">
+              <h2>8</h2>
+            </div> <!-- col-xs-4 -->
+
+            <div id="nine" class="game-box col-xs-4">
+              <h2>9</h2>
+            </div>
+          </div> <!-- row -->
 
         </div> <!-- gamescreen -->
       </secton> <!-- right-side -->

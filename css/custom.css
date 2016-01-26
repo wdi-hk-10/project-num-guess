@@ -20,7 +20,7 @@ h1 {
   font-size: 80px;
   text-align: center;
 }
-/* LEFT SIDE OPTIONS */
+/* LEFT SIDE DURING OPTIONS */
 .dropdown-toggle {
   margin: 10px;
 }
@@ -31,7 +31,7 @@ h1 {
   font-size: 30px;
   margin: 5px;
 }
-/* LEFT SIDE PLAYBOX */
+/* LEFT SIDE DURING GAME */
 #play-box {
   text-align: center;
 }
@@ -63,6 +63,7 @@ h1 {
   height: 100%;
   padding: 0;
 }
+/* RIGHT SIDE DURING OPTIONS */
 #instruct-screen {
   background-color: blue; /* remove later */
   height: 100%;
@@ -78,9 +79,15 @@ h1 {
 p { /* instructions */
   padding: 40px;
   text-align: justify;
+/* RIGHT SIDE DURING GAME */
 }
 #game-screen {
-  background-color: yellow; /* remove later */
+  background-color: orange; /* remove later */
   height: 100%;
 }
-
+.game-box {
+  height: 200px;
+  width: 200px;
+  margin: 0px;
+  border: black solid 2px;
+}
