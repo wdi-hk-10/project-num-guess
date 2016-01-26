@@ -1,12 +1,15 @@
 $(document).ready(function(){ // do not remove - insert all code in here!
 
-  //event listener
-  //$('#game-screen').hide()
-  //$('#instruct-screen').show()
+  $('#start-button').on("click", function(){
+    $('#game-screen').show();
+    $('#play-box').show()
+    $('#instruct-screen').hide();
+    $('#options').hide()
+});
 
   //event listener
-  //$('#options').hide()
-  //$('#play-box').show()
+
+
 
 
   var threeX3 = [[1,1,1,1,0,1,1,1,1],//0
