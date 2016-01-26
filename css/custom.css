@@ -1,4 +1,86 @@
 body {
-  color: #fffafa; /*off-white*/
-  background-color: #293542; /*slate*/
+  color: #fffafa; /* off-white */
+  background-color: #293542; /* slate */
+  font-family: Arial; /* add more */
 }
+.container-fluid {
+  padding: 0;
+  height: 100vh;
+}
+.row {
+  margin: 0;
+}
+/* LEFT SIDE ALL */
+.left-side {
+  background-color: red; /* remove later */
+  height: 100%;
+  padding: 0;
+}
+h1 {
+  font-size: 80px;
+  text-align: center;
+}
+/* LEFT SIDE OPTIONS */
+.dropdown-toggle {
+  margin: 10px;
+}
+.selectpicker {
+  font-size: 20px;
+}
+.filter-option {
+  font-size: 30px;
+  margin: 5px;
+}
+/* LEFT SIDE PLAYBOX */
+#play-box {
+  text-align: center;
+}
+#all-scoreboxes {
+  margin: 0;
+}
+.scorebox {
+  background-color: green; /* remove later */
+  margin: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+.scorebox h1,h2 {
+  text-align: center;
+}
+#guess-button {
+  text-align: center;
+}
+.number-bar {
+  background-color: black; /* remove later */
+  clear: both;
+  height: 100px;
+  text-align: center;
+}
+
+/* RIGHT SIDE */
+.right-side {
+  background-color: green; /* remove later */
+  height: 100%;
+  padding: 0;
+}
+#instruct-screen {
+  background-color: blue; /* remove later */
+  height: 100%;
+  text-align: center;
+  padding: 0;
+}
+#instruct-screen h3 {
+  margin-top: 0;
+  padding-top: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+p { /* instructions */
+  padding: 40px;
+  text-align: justify;
+}
+#game-screen {
+  background-color: yellow; /* remove later */
+  height: 100%;
+}
+

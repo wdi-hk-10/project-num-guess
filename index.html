@@ -6,99 +6,104 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NumGuess</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>numGuess</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
     <script src="js/application.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css">
     <link href="css/custom.css" rel="stylesheet">
   </head>
 
-  <body class="container-fluid">
+  <body>
 
-    <!-- leftside on menu screen-->
-    <section id="menu" class="leftSide .col-md-6">
-      <div class=".col-md-12">
-        <h1>NumGuess</h1>
-      </div>
+    <div class="container-fluid">
+      <!-- LEFT SIDE ON OPTIONS AND DURING GAME -->
+      <section class="left-side col-xs-6"> <!-- left side -->
+        <header>
+          <h1>numGuess</h1>
+        </header>
 
-      <!-- leftside on menu screen -->
-      <div> <!-- initial div -->
-        <div class="btn-group">
-        <button type="button" id="target-score" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Target Score<span class="caret"></span>
-        </button>
-          <ul class="dropdown-menu">
-            <li><a href="#">First to 50</a></li>
-            <li><a href="#">First to 100</a></li>
-            <li><a href="#">First to 150</a></li>
-          </ul>
-        </div> <!-- btn-group div -->
-      </div> <!-- initial div -->
+        <!-- LEFT SIDE DURING OPTIONS ONLY -->
+        <div id="options"> <!-- style="display: none"--> <!-- hide when game starts -->
+          <div class="row">
+            <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options target score -->
+              <select id="target-score" class="selectpicker col-xs-12" title="Choose Target Score">
+                <option>50</option>
+                <option>100</option>
+                <option>150</option>
+              </select>
+            </div> <!-- options target score -->
+          </div>  <!-- row -->
 
-      <div> <!-- initial div -->
-        <div class="btn-group">
-        <button type="button" id="sprite-size" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sprite Size<span class="caret"></span>
-        </button>
-          <ul class="dropdown-menu">
-            <li><a href="#">3x3</a></li>
-            <li><a href="#">4x4</a></li>
-            <li><a href="#">5x5</a></li>
-          </ul>
-        </div> <!-- btn-group div -->
-      </div> <!-- initial div -->
+          <div class="row">
+            <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options sprite size -->
+              <select class="selectpicker col-xs-12" title="Choose Sprite Size">
+                <option>3x3</option>
+                <option>4x4</option>
+                <option>5x5</option>
+              </select>
+            </div> <!-- options sprite size -->
+          </div> <!-- row -->
 
-      <div> <!-- initial div -->
-        <div class="btn-group">
-        <button type="button" id="orientation" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Orientation<span class="caret"></span>
-        </button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Normal</a></li>
-            <li><a href="#">Mirror</a></li>
-            <li><a href="#">Inverse</a></li>
-          </ul>
-        </div> <!-- btn-group div -->
-      </div> <!-- initial div -->
-    </section> <!-- leftSide-->
+          <div class="row">
+            <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options orientation -->
+              <select class="selectpicker col-xs-12" title="Choose Orientation">
+                <option>Normal</option>
+                <option>Inverse</option>
+                <option>Mirror</option>
+              </select>
+            </div> <!-- options orientation -->
+          </div> <!-- row -->
+        </div> <!-- id=options -->
 
-    <!-- leftside during game -->
-    <section id="game" class="leftSide .col-md-6">
-      <div class=".col-md-12">
-         <h1>NumGuess</h1>
-      </div>
-      <div class="scores">
-        <div class=".col-md-4">
-          <div>Player 1 Score</div>
-        </div>
-        <div class=".col-md-4">
-          <div>Target Score</div>
-        </div>
-        <div class=".col-md-4">
-          <div>Player 2 Score</div>
-        </div>
-      </div>
-      <div class=".col-md">
-        <div>Guess</div>
-      </div>
-    </section>
+        <!-- LEFT SIDE DURING GAME ONLY -->
+        <div id="play-box" style="display: none"> <!-- style="display: none"-->
+          <div class="row" id="all-scoreboxes">
+            <div id="one-score" class="scorebox col-xs-3 col-xs-push-1">
+              <h2>Player 1</h2>
+              <h3>0</h3>
+            </div> <!-- col-xs-4 -->
 
-    <!-- rightside on menu screen-->
-    <section class="rightSide .col-md-6">
-      <div id="gamescreen">
-        <div>
-          <div>Instructions</div>
-        </div>
-        <div>
-          <div>Start Button</div>
-        </div>
-      </div> <!-- gamescreen div-->
-    </section> <!-- rightSide-->
+            <div id="target-score" class="scorebox col-xs-3 col-xs-push-1">
+              <h2>Target</h2>
+              <h3>0</h3>
+            </div> <!-- col-xs-4 -->
 
-    <!-- leftside during game -->
+            <div id="two-score" class="scorebox col-xs-3 col-xs-push-1">
+              <h2>Player 2</h2>
+              <h3>0</h3>
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+          <div class="row">
+            <button type="button" id="guess-button" class="btn btn-lg btn-success">Guess</button>
+          </div> <!-- row -->
+          <div class="row">
+            <h1>Number Box 1</h1>
+            <h1>Number Box 2</h1>
+          </div>
+        </div> <!-- play-box -->
 
-    <footer>
-      <div class="numbersBar .col-md-6">
-        <div>Numbers Bar</div>
-      <div>
-    </footer>
+      </section> <!-- left side -->
+
+      <!-- RIGHT SIDE DURING OPTIONS ONLY -->
+      <section class="right-side col-xs-6"> <!-- right-side-->
+
+        <div id="instruct-screen"> <!-- hide when game starts -->
+          <h3>Instructions</h3>
+          <p>Click a square and try to guess the number hidden behind the grid. Guess correctly and score the value of the number plus one point for each remaining square uncovered.  (Eg guessing the number 7 with 4 uncovered squares would score 11 points.)  Guess incorrectly and the points are awaded to your opponent.</p>
+          <button type="button" id="start-button" class="btn btn-lg btn-success">Start</button>
+        </div> <!-- instruct & start -->
+
+        <!-- RIGHT SIDE DURING GAME ONLY -->
+        <div id="game-screen" style="display: none"> <!-- hide when game ends -->
+
+        </div> <!-- gamescreen -->
+      </secton> <!-- right-side -->
+    </div> <!-- container fluid -->
 
   </body>
 </html>
