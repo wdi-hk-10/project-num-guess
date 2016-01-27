@@ -9,21 +9,6 @@
                 //[0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1], //8
                 //[1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1]];//9
 
-  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1] //0
-                [0,1,0,1,1,0,0,1,0,0,1,0,1,1,1], //1
-                [0,1,0,1,0,1,0,0,1,1,1,0,1,1,1], //2
-                [1,1,0,0,0,1,0,1,0,0,0,1,1,1,0], //3
-                [1,0,1,1,0,1,1,1,1,0,0,1,0,0,1], //4
-                [1,1,1,1,0,0,1,1,1,0,0,1,1,1,0], //5
-                [0,1,1,1,0,0,1,1,0,1,0,1,0,1,0], //6
-                [1,1,1,0,0,1,0,1,0,1,0,0,1,0,0], //7
-                [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1], //8
-                [0,1,0,1,0,1,0,1,1,0,0,1,1,1,0]];//9
-
-  var threeFiveInverse = 0; // divide the array by its width, then switch either end (odd) or both sides (even)
-  var threeFiveReverse = 0; // divide the array by it's height, then switch either end (odd) or both ends (even)
-  var threeFiveInverseReverse = threeFive.reverse(); //reverse entire string
-
   var threeSix = [[0] //0
                 [1], //1
                 [2], //2

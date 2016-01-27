@@ -2,7 +2,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   var threeThree = [[1,1,1,1,0,1,1,1,1],//0
                     [1,1,0,0,1,0,1,1,1], //1
-                    [1,1,0,0,1,0,1,1,1], //2
+                    [1,1,0,0,1,0,0,1,1], //2
                     [1,1,1,0,1,1,1,1,1], //3
                     [1,0,1,1,1,1,0,0,1], //4
                     [0,1,1,0,1,0,1,1,0], //5
@@ -12,8 +12,8 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                     [1,1,1,1,1,1,0,0,1]];//9
 
   var threeThreeInverse = 0; // divide the array by its width, then switch either end (odd) or both sides (even)
-  var threeThreeReverse = 0;// divide the array by it's height, then switch either end (odd) or both ends (even)
-  var threeThreeInverseReverse = threeThree.reverse(); //reverse entire string
+  var threeThreeReverse = 0; // divide the array by it's height, then switch either end (odd) or both ends (even)
+  // var threeThreeInverseReverse = threeThree.clone().reverse(); //reverse entire string
 
   var threeFour = [[0,1,0,1,0,1,1,0,1,0,1,0],//0
                    [0,1,0,1,1,0,0,1,0,1,1,1], //1
@@ -26,9 +26,24 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,0,1,0,1,0,1,0,1,0], //8
                    [0,1,1,1,0,1,0,1,1,0,0,1]];//9
 
-  var threeFourInverse = 0;// divide the array by its width, then switch either end (odd) or both sides (even)
+  var threeFourInverse = 0; // divide the array by its width, then switch either end (odd) or both sides (even)
   var threeFourReverse = 0; // divide the array by it's height, then switch either end (odd) or both ends (even)
-  var threeFourInverseReverse = threeFour.reverse(); //reverse entire string
+  // var threeFourInverseReverse = threeFour.reverse(); //reverse entire string
+
+  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1] //0
+                   [0,1,0,1,1,0,0,1,0,0,1,0,1,1,1], //1
+                   [0,1,0,1,0,1,0,0,1,1,1,0,1,1,1], //2
+                   [1,1,0,0,0,1,0,1,0,0,0,1,1,1,0], //3
+                   [1,0,1,1,0,1,1,1,1,0,0,1,0,0,1], //4
+                   [1,1,1,1,0,0,1,1,1,0,0,1,1,1,0], //5
+                   [0,1,1,1,0,0,1,1,0,1,0,1,0,1,0], //6
+                   [1,1,1,0,0,1,0,1,0,1,0,0,1,0,0], //7
+                   [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1], //8
+                   [0,1,0,1,0,1,0,1,1,0,0,1,1,1,0]];//9
+
+  var threeFiveInverse = 0; // divide the array by its width, then switch either end (odd) or both sides (even)
+  var threeFiveReverse = 0; // divide the array by it's height, then switch either end (odd) or both ends (even)
+  // var threeFiveInverseReverse = thr.clone()eeFive.reverse(); //reverse entire string
 
   var numberGridCounter = 0;
   var turnCounter = 0;
@@ -37,6 +52,13 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   var numberInGrid;
 
   var $targetScoreElem = $('#target-score').find('h3');
+  var $userGuessElem = $('#results-text').find('h3');
+
+  var pOneScore = 0;
+  var pTwoScore = 0;
+  var $pOneScoreElem = $('#player-one-score').find('h3');
+  var $pTwoScoreElem = $('#player-two-score').find('h3');
+
 
   // STEP 1
   function bindStartButton () {
@@ -105,24 +127,41 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   function bindUserGuess () {
     $('#user-guess').off().on("change", function() {
       var userGuess = parseInt($(this).val()); // checks if user has guessed the number
-      // console.log(typeof(userGuess));
-      // console.log(userGuess);
-      // console.log(answer);
-      // console.log(numberInGrid)
+      // console.log(typeof(userGuess)); // remove when finished
+      // console.log(userGuess); // remove when finished
+      // console.log(answer); // remove when finished
+      // console.log(numberInGrid) // remove when finished
 
       // calcuate score
       if (userGuess === answer) {
-        console.log("Correct! You get " + answer + " point(s).");
-        // add points to user score
-        // check which player's turn
-        // add the answer to the player
-        // if (turnCounter % 2 === 0)
+        if (turnCounter % 2 === 0) {
+          $userGuessElem.text(userGuess + " is correct Player 1! You score " + answer + " point(s).");
+          pOneScore = pOneScore + answer;
+          console.log("answer" + answer + answer);
+          console.log("player" + pOneScore + pOneScore);
+          $pOneScoreElem.text(pOneScore);
+
+        }
+        else {
+          $userGuessElem.text(userGuess + " is correct Player 2! You score " + answer + " point(s).");
+          pTwoScore = pTwoScore + answer;
+          $pTwoScoreElem.text(pTwoScore);
+        }
       }
       else {
-        console.log("Wrong!  The correct answer is " + answer + " so your opponent gets " + answer + " point(s).");
-        // add points to opponent's score
-        // check which player's turn
-        // add the answer to the opponent
+        if (turnCounter % 2 === 0) {
+          $userGuessElem.text(userGuess + " is wrong!  The correct answer is " + answer + ".  Player 2 gets " + answer + " point(s).");
+          pTwoScore = pTwoScore + answer;
+          $pTwoScoreElem.text(pTwoScore);
+
+        }
+        else {
+          $userGuessElem.text(userGuess + " is wrong!  The correct answer is " + answer + ".  Player 1 gets " + answer + " point(s).");
+          pOneScore = pOneScore + answer;
+          console.log("answer" + answer * answer);
+          console.log("pOne" + pOneScore * pOneScore);
+          $pOneScoreElem.text(pOneScore);
+        }
       }
 
       // switch turn
@@ -132,14 +171,12 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       resetGrid();
 
       // if target is reached, end of game
-      // generateNumber(); // otherwise, generate another number
-      // selectCell();
-      // boxReset(); // reset game-box backgrounds to orange
-      // selectCell(); NOT WORKING
+      // otherwise, generate another number
+
     });
   }
 
-  function revealAnswer() {  // this function isn't workig yet
+  function revealAnswer() {
     for(var i = 0; i < numberInGrid.length; i++) {
       if(numberInGrid[i] === 1) {
         $('#c'+ i).css("background-color","black");
@@ -169,6 +206,8 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   // ORIENTATION BUTTON
   // recalculate the array
+
+// PREVENT PLAYER FROM CLICKING TWICE - Denis will assist
 
   bindStartButton()
 }); // do not remove
