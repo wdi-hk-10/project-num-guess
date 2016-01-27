@@ -1,6 +1,6 @@
 $(document).ready(function(){ // do not remove - insert all code in here!
 
-  var threeThree = [[1,1,1,1,0,1,1,1,1],//0
+  var threeThree = [[1,1,1,1,0,1,1,1,1], //0
                     [1,1,0,0,1,0,1,1,1], //1
                     [1,1,0,0,1,0,0,1,1], //2
                     [1,1,1,0,1,1,1,1,1], //3
@@ -11,11 +11,11 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                     [0,1,1,1,1,1,1,1,1], //8
                     [1,1,1,1,1,1,0,0,1]];//9
 
-  var threeThreeInverse = 0; // divide the array by its width, then switch either end (odd) or both sides (even)
-  var threeThreeReverse = 0; // divide the array by it's height, then switch either end (odd) or both ends (even)
-  // var threeThreeInverseReverse = threeThree.clone().reverse(); //reverse entire string
+  var threeThreeInverse = 0; // divide array by its "width" , then switch either end (odd) or both sides (even)
+  var threeThreeReverse = 0; // divide array by its "height", then switch either end (odd) or both ends (even)
+  // var threeThreeInverseReverse = threeThree.clone()...; //reverse entire string
 
-  var threeFour = [[0,1,0,1,0,1,1,0,1,0,1,0],//0
+  var threeFour = [[0,1,0,1,0,1,1,0,1,0,1,0], //0
                    [0,1,0,1,1,0,0,1,0,1,1,1], //1
                    [1,1,0,0,0,1,0,1,0,1,1,1], //2
                    [1,1,0,0,1,1,0,0,1,1,1,0], //3
@@ -26,11 +26,11 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,0,1,0,1,0,1,0,1,0], //8
                    [0,1,1,1,0,1,0,1,1,0,0,1]];//9
 
-  var threeFourInverse = 0; // divide the array by its width, then switch either end (odd) or both sides (even)
-  var threeFourReverse = 0; // divide the array by it's height, then switch either end (odd) or both ends (even)
-  // var threeFourInverseReverse = threeFour.reverse(); //reverse entire string
+  var threeFourInverse = 0; // divide array by its "width", then switch either end (odd) or both sides (even)
+  var threeFourReverse = 0; // divide array by its "height", then switch either end (odd) or both ends (even)
+  // var threeFourInverseReverse = threeFour.clone()...; //reverse entire string
 
-  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1] //0
+  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1]  //0
                    [0,1,0,1,1,0,0,1,0,0,1,0,1,1,1], //1
                    [0,1,0,1,0,1,0,0,1,1,1,0,1,1,1], //2
                    [1,1,0,0,0,1,0,1,0,0,0,1,1,1,0], //3
@@ -41,14 +41,18 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1], //8
                    [0,1,0,1,0,1,0,1,1,0,0,1,1,1,0]];//9
 
-  var threeFiveInverse = 0; // divide the array by its width, then switch either end (odd) or both sides (even)
-  var threeFiveReverse = 0; // divide the array by it's height, then switch either end (odd) or both ends (even)
-  // var threeFiveInverseReverse = thr.clone()eeFive.reverse(); //reverse entire string
+  var threeFiveInverse = 0; // divide array by its "width", then switch either end (odd) or both sides (even)
+  var threeFiveReverse = 0; // divide array by it's "height", then switch either end (odd) or both ends (even)
+  // var threeFiveInverseReverse = threeFive.clone()...; //reverse entire string
+
+
 
   var gridCounter = 0;
   var turnCounter = 0;
 
-  var targetScoreInput
+  var targetScoreInput;
+  var spriteSizeInput;
+  var orientationInput;
 
   var answer;
   var numberInGrid;
@@ -68,9 +72,17 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     $('#start-button').on("click", function(){
       // feat. get input from dropdown
       // feat. depending on what input, show different screen
-      targetScoreInput = $('#set-target-score').val() || 40; // removed var to nake global variable
+      targetScoreInput = $('#set-target-score').val() || 40;
       $targetScoreElem.text(targetScoreInput);
-      // var spriteSize
+
+      spriteSizeInput = $('#set-sprite-size').val() || "3x3";
+      // SPRITE SIZE BUTTON
+      // switch selected array
+      // append to extend grid
+
+      orientationInput = $('#set-orientation').val() || "Normal";
+      // ORIENTATION BUTTON
+      // recalculate the array
 
       $('#instruct-screen').hide();
       $('#game-screen').show();
@@ -135,7 +147,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   function bindUserGuess () {
     $('#user-guess').off().on("change", function() {
       var userGuess = parseInt($(this).val());
-       // checks if user has guessed the number
+      // checks if user has guessed the number
       // console.log(typeof(userGuess)); // remove when finished
       // console.log(userGuess); // remove when finished
       // console.log(answer); // remove when finished
@@ -164,14 +176,14 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       else {
         if (turnCounter % 2 === 0) {
           $userGuessElem1.text(userGuess + " is wrong!  The correct answer is " + answer + ".");
-          $userGuessElem2.text("Player 2 gets " + (answer + (numberInGrid.length - gridCounter)) + " point(s).");
+          $userGuessElem2.text("Player 2 scores " + (answer + (numberInGrid.length - gridCounter)) + " point(s).");
           pTwoScore = pTwoScore + answer + (numberInGrid.length - gridCounter);
           $pTwoScoreElem.text(pTwoScore);
 
         }
         else {
           $userGuessElem1.text(userGuess + " is wrong!  The correct answer is " + answer + ".");
-          $userGuessElem2.text("Player 1 gets " + (answer + (numberInGrid.length - gridCounter)) + " point(s).");
+          $userGuessElem2.text("Player 1 scores " + (answer + (numberInGrid.length - gridCounter)) + " point(s).");
           pOneScore = pOneScore + answer + (numberInGrid.length - gridCounter);
           console.log("answer" + answer * answer);
           console.log("pOne" + pOneScore * pOneScore);
@@ -179,13 +191,12 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         }
       }
 
-      // switch turn
       turnCounter = turnCounter + 1;
       highlightPlayer();
       revealAnswer();
       resetGrid();
 
-      if (pOneScore >= targetScoreInput) {
+      if (pOneScore >= targetScoreInput) { // target is reached, end of game
         $userGuessElem1.text("Player One Wins");
         $userGuessElem2.text("Thank you for playing numGuess")
       }
@@ -194,11 +205,8 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         $userGuessElem2.text("Thank you for playing numGuess")
       }
       else {
-        resetGrid ();
+        resetGrid (); // otherwise, generate another number
       }
-      // target is reached, end of game
-      // otherwise, generate another number
-
     });
   }
 
@@ -213,13 +221,11 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     }
   }
 
-  function resetGrid () { // reset game box to orange
+  function resetGrid () { // reset grid to orange
     gridCounter = 0;
     $('#user-pass').hide();
     $('#reset-cells').show();
-    // show the button
-    // if player click on button
-    // reset the cells
+
     $('#reset-cells').on("click", function () {
       for(var i = 0; i < numberInGrid.length; i++) {
         $('.game-cell').css("background-color","orange");
@@ -229,12 +235,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     });
   }
 
-  // SPRITE SIZE BUTTON
-  // switch selected array
-  // append to extend grid
 
-  // ORIENTATION BUTTON
-  // recalculate the array
 
 // PREVENT PLAYER FROM CLICKING TWICE - Denis will assist
 

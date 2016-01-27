@@ -15,6 +15,6 @@ jQuery
 None
 
 ...unsolved problems
-reverse arrays
+reversing an array
 
 etc.
