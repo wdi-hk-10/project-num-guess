@@ -72,7 +72,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
 
   $('#start-button').on("click", function(){
-    console.log("Jules");
+    //console.log("Jules");
     $('#game-screen').show();
     $('#play-box').show();
     $('#instruct-screen').hide();
@@ -85,19 +85,22 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   });
 
+  var numberInGrid;
   // generates a random number from the chosen array
-  function generateNum() {
-    var bitNum = Math.floor(Math.random()*(10));
-    var test = threeThree[bitNum]; // need to replace with a selectable array
+  function revealNumber() {
+    var random = Math.floor(Math.random()*(10));
+    numberInGrid = threeThree[random]; // need to replace threeThree with a selectable array
+    console.log(numberInGrid);
   }
 
-  test = [1,0,1,0,1,0,1,0,1]
+  //test = [1,0,1,0,1,0,1,0,1]
 
 
-
+  // turn the grid black or white
+  revealNumber();
   $('.game-box').on('click', function() {
     var boxId = parseInt($(this).attr('id').substring(1));
-    var sprite = test[boxId];
+    var sprite = numberInGrid[boxId];
     //console.log("boxId " + boxId);
     //console.log("testID " + test[boxId]);
       if(sprite === 1) {
@@ -108,7 +111,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       }
   });
 
-  // puts number in the grid
+  /* No longer using the function below
   function populate() {
     for(var i = 0; i < test.length; i++) {
       if(test[i] === 1) {
@@ -118,8 +121,8 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         $('#c'+i).css("background-color","white");
       }
     }
-  }
-  //populate();
+  } */
+  // populate();
 
 
 
