@@ -1,7 +1,12 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url(../Arcade.ttf);
+}
+
 body {
   color: #fffafa; /* off-white */
   background-color: #293542; /* slate */
-  font-family: Arial; /* add more */
+  font-family: myFirstFont, Arial; /* add more */
 }
 .container-fluid {
   padding: 0;
@@ -39,7 +44,7 @@ header h1 {
   margin: 0;
 }
 .scorebox {
-  background-color: green; /* remove later */
+  background-color: red; /* remove later */
   margin: 10px;
   border-radius: 10px;
   text-align: center;
@@ -89,7 +94,7 @@ p { /* instructions */
   background-color: orange; /* remove later */
   height: 100%;
 }
-.game-box {
+.game-cell {
   height: 200px;
   width: 200px;
   margin: 0px;
