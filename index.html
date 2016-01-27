@@ -32,26 +32,26 @@
           <div class="row">
             <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options target score -->
               <select id="target-score" class="selectpicker col-xs-12" title="Target Score">
+                <option>25</option>
                 <option>50</option>
-                <option>100</option>
-                <option>150</option>
+                <option>75</option>
               </select>
             </div> <!-- options target score -->
           </div>  <!-- row -->
 
           <div class="row">
             <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options sprite size -->
-              <select class="selectpicker col-xs-12" title="Sprite Size">
+              <select id="sprite-size" class="selectpicker col-xs-12" title="Sprite Size">
                 <option>3x3</option>
                 <option>3x4</option>
-                <option>3x6</option>
+                <option>3x5</option>
               </select>
             </div> <!-- options sprite size -->
           </div> <!-- row -->
 
           <div class="row">
             <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options orientation -->
-              <select class="selectpicker col-xs-12" title="Orientation">
+              <select id="orientation" class="selectpicker col-xs-12" title="Orientation">
                 <option>Normal</option>
                 <option>Inverse</option>
                 <option>Mirror</option>
@@ -79,7 +79,19 @@
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
-            <button type="button" id="guess-button" class="btn btn-lg btn-success">Guess</button>
+            <div class="options-buttons col-xs-6 col-xs-push-3"> <!-- options orientation -->
+              <select class="selectpicker col-xs-12" title="Guess Number">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+              </select>
           </div> <!-- row -->
           <div class="row">
             <h1>Number Box 1</h1>
@@ -94,7 +106,7 @@
 
         <div id="instruct-screen"> <!-- hide when game starts -->
           <h3>Instructions</h3>
-          <p>Click a square and try to guess the number hidden behind the grid. Guess correctly and score the value of the number plus one point for each remaining square uncovered.  (Eg guessing the number 7 with 4 uncovered squares would score 11 points.)  Guess incorrectly and the points are awaded to your opponent.</p>
+          <p>Click a square to reveal part of a number between 1 and 9.  Can you tell what the number is?  Guess correctly to score the value of the number plus one point for each remaining square uncovered.  (Eg guessing the number 7 with 4 uncovered squares would score 11 points.)  Guess incorrectly and the points are awaded to your opponent.</p>
           <button type="button" id="start-button" class="btn btn-lg btn-success">Start</button>
         </div> <!-- instruct & start -->
 
@@ -137,44 +149,46 @@
           <!-- RIGHT SIDE DURING GAME ONLY (3x4)-->
         <div id="game-screen2" style="display: none"> <!-- hide when game ends -->
           <div class="row">
-            <div id="c0" class="game-box col-xs-3">
+            <div id="c0" class="game-box col-xs-4">
               <h2>0</h2>
             </div> <!-- col-xs-4 -->
-            <div id="c1" class="game-box col-xs-3">
+            <div id="c1" class="game-box col-xs-4">
               <h2>1</h2>
             </div> <!-- col-xs-4 -->
-            <div id="c2" class="game-box col-xs-3">
+            <div id="c2" class="game-box col-xs-4">
               <h2>2</h2>
             </div>
-            <div id="c3" class="game-box col-xs-3">
+          </div> <!-- row -->
+          <div class="row">
+            <div id="c3" class="game-box col-xs-4">
               <h2>3</h2>
             </div> <!-- col-xs-4 -->
-          </div> <!-- row -->
-          <div class="row">
-            <div id="c4" class="game-box col-xs-3">
+            <div id="c4" class="game-box col-xs-4">
               <h2>4</h2>
             </div> <!-- col-xs-4 -->
-            <div id="c5" class="game-box col-xs-3">
+            <div id="c5" class="game-box col-xs-4">
               <h2>5</h2>
             </div>
-             <div id="c6" class="game-box col-xs-3">
+          </div> <!-- row -->
+          <div class="row">
+             <div id="c6" class="game-box col-xs-4">
               <h2>6</h2>
             </div> <!-- col-xs-4 -->
-            <div id="c7" class="game-box col-xs-3">
+            <div id="c7" class="game-box col-xs-4">
               <h2>7</h2>
+            </div> <!-- col-xs-4 -->
+            <div id="c8" class="game-box col-xs-4">
+              <h2>8</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
-            <div id="c8" class="game-box col-xs-3">
-              <h2>8</h2>
-            </div> <!-- col-xs-4 -->
-            <div id="c9" class="game-box col-xs-3">
+             <div id="c9" class="game-box col-xs-4">
               <h2>9</h2>
             </div> <!-- col-xs-4 -->
-            <div id="10" class="game-box col-xs-3">
+            <div id="c10" class="game-box col-xs-4">
               <h2>10</h2>
             </div> <!-- col-xs-4 -->
-            <div id="c11" class="game-box col-xs-3">
+            <div id="c11" class="game-box col-xs-4">
               <h2>11</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->

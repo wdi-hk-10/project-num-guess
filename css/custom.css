@@ -16,8 +16,8 @@ body {
   height: 100%;
   padding: 0;
 }
-h1 {
-  font-size: 80px;
+header h1 {
+  font-size: 100px;
   text-align: center;
 }
 /* LEFT SIDE DURING OPTIONS */
@@ -73,14 +73,18 @@ h1 {
 #instruct-screen h3 {
   margin-top: 0;
   padding-top: 20px;
-  font-size: 30px;
   text-align: center;
+  font-size: 40px;
+  text-decoration: underline;
+
 }
 p { /* instructions */
   padding: 40px;
   text-align: justify;
+  font-size: 20px;
+ }
 /* RIGHT SIDE DURING GAME */
-}
+
 #game-screen {
   background-color: orange; /* remove later */
   height: 100%;
