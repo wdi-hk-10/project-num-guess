@@ -1,6 +1,7 @@
 @font-face {
   font-family: myFirstFont;
   src: url(../Arcade.ttf);
+  color: #fffafa;
 }
 
 body {
@@ -24,13 +25,11 @@ body {
 header h1 {
   font-size: 120px;
   text-align: center;
+  margin-bottom: 0px;
 }
 /* LEFT SIDE DURING OPTIONS */
 .dropdown-toggle {
   margin: 10px;
-}
-.selectpicker {
-  font-size: 20px;
 }
 .filter-option {
   font-size: 30px;
@@ -49,8 +48,13 @@ header h1 {
   border-radius: 10px;
   text-align: center;
 }
-.scorebox h1,h2 {
+.scorebox h2 {
   text-align: center;
+  font-size: 70px;
+}
+.scorebox h3 {
+  text-align: center;
+  font-size: 35px;
 }
 #guess-button {
   text-align: center;
@@ -77,11 +81,9 @@ header h1 {
 }
 #instruct-screen h3 {
   margin-top: 0;
-  padding-top: 20px;
+  padding-top: 40px;
   text-align: center;
-  font-size: 40px;
-  text-decoration: underline;
-
+  font-size: 80px;
 }
 p { /* instructions */
   padding: 40px;

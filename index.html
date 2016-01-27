@@ -32,10 +32,10 @@
           <div class="row">
             <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options target score -->
               <select id="set-target-score" class="selectpicker col-xs-12" title="Target Score">
-                <option>25</option>
-                <option>50</option>
-                <option>75</option>
-                <option>100</option>
+                <option>20</option>
+                <option>40</option>
+                <option>60</option>
+                <option>80</option>
               </select>
             </div> <!-- options target score -->
           </div>  <!-- row -->
@@ -67,18 +67,18 @@
         <div id="play-box" style="display: none"> <!-- style="display: none"-->
           <div class="row" id="all-scoreboxes">
             <div id="player-one-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h2>Player 1</h2>
-              <h3>0</h3>
+              <h3>Player 1</h3>
+              <h2>0</h2>
             </div> <!-- col-xs-4 -->
 
             <div id="target-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h2>Target</h2>
-              <h3>0</h3>
+              <h3>Target</h3>
+              <h2>0</h2>
             </div> <!-- col-xs-4 -->
 
             <div id="player-two-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h2>Player 2</h2>
-              <h3>0</h3>
+              <h3>Player 2</h3>
+              <h2>0</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
@@ -98,13 +98,16 @@
             </div> <!-- options orientation -->
           </div> <!-- row -->
           <div class="row">
-            <button id="user-pass" class="btn btn-warning">PASS</button>
-          </div>
-          <div id="results-text" class="row">
-            <h3>Text</h3>
+            <button id="user-pass" class="btn btn-lg btn-warning">PASS</button>
+          </div> <!-- row -->
+          <div class="row">
+            <button id="reset-cells" class="btn btn-lg btn-warning" style="display: none">RESET</button>
+          </div> <!-- row -->
+          <div id="results-text1" class="row">
+            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
            </div> <!-- NB1 row -->
-           <div class="row">
-            <h1>Number Box 2</h1>
+           <div id="results-text2" class="row">
+            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
           </div> <!-- NB2 row -->
         </div> <!-- play-box -->
       </section> <!-- left side -->
