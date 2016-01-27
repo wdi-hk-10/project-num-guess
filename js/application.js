@@ -68,7 +68,6 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                 [9]];//9
 
   var turnCounter = 0;
-  var boxes = $('.game-box');
 
 
   $('#start-button').on("click", function(){
@@ -79,13 +78,19 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     $('#options').hide();
     // reset player scores to zero
 
-    // update target board
-
+    // update target score
+    //setTargetScore()
     // append extra rows to larger grids if applicable
-
-
-
   });
+
+
+  //function setTargetScore() {
+    $('#set-target-score').on("change", function() {
+      var setTargetScore = $(this).val();
+      console.log(setTargetScore);
+      var targetScore = $('#target-score').find('h3').text(setTargetScore);
+    });
+  //}
 
   var numberInGrid;
   var answer;
