@@ -77,19 +77,22 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     $('#play-box').show();
     $('#instruct-screen').hide();
     $('#options').hide();
+    // reset player scores to zero
+
     // update target board
 
     // append extra rows to larger grids if applicable
 
-    // reset player scores to zero
+
 
   });
 
   var numberInGrid;
+  var answer;
   // generates a random number from the chosen array
   function revealNumber() {
-    var random = Math.floor(Math.random()*(10));
-    numberInGrid = threeThree[random]; // need to replace threeThree with a selectable array
+    answer = Math.floor(Math.random()*(10));
+    numberInGrid = threeThree[answer]; // need to replace threeThree with a selectable array
     console.log(numberInGrid);
   }
 
@@ -100,15 +103,29 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   revealNumber();
   $('.game-box').on('click', function() {
     var boxId = parseInt($(this).attr('id').substring(1));
-    var sprite = numberInGrid[boxId];
+    var pixel = numberInGrid[boxId];
     //console.log("boxId " + boxId);
     //console.log("testID " + test[boxId]);
-      if(sprite === 1) {
+      if(pixel === 1) {
         $('#c' + boxId).css("background-color","black");
       }
       else {
         $('#c' + boxId).css("background-color","white");
       }
+  });
+
+  $('#user-guess').on("change", function() {
+    //console.log($(this).val());
+    var userGuess = parseInt($(this).val()); // checks if user has guessed the number
+    console.log(typeof(userGuess));
+    console.log(userGuess);
+    console.log(answer);
+    console.log(numberInGrid)
+    if (userGuess === answer)
+      console.log("well done");
+    else {
+      console.log("loser!");
+    }
   });
 
   /* No longer using the function below
