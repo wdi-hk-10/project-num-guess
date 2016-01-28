@@ -38,7 +38,9 @@ header h1 {
   font-size: 30px;
   margin: 5px;
 }
-
+#start-button {
+  text-align: center;
+}
 /* LEFT SIDE DURING GAME */
 #play-box {
   text-align: center;
@@ -79,7 +81,7 @@ header h1 {
 
 /* RIGHT SIDE DURING OPTIONS */
 #instruct-screen {
-  background-color: blue; /* remove later */
+  background-color: red; /* remove later */
   height: 100%;
   text-align: center;
   padding: 0;
@@ -91,15 +93,16 @@ header h1 {
   font-size: 80px;
 }
 p { /* instructions */
-  padding: 40px;
+  padding: 20px 25px;
   text-align: justify;
-  font-size: 20px;
+  font-size: 25px;
  }
 
 /* RIGHT SIDE DURING GAME */
 .game-screen {
-  background-color: orange; /* remove later */
+  background-color: red;
   height: 100%;
+
 }
 #game-screen3x3 .game-cell {
   height: 200px;

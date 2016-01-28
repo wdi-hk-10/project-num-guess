@@ -11,10 +11,6 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                     [0,1,1,1,1,1,1,1,1], //8
                     [1,1,1,1,1,1,0,0,1]];//9
 
-  var threeThreeInverse = 0; // divide array by its "width" , then switch either end (odd) or both sides (even)
-  var threeThreeReverse = 0; // divide array by its "height", then switch either end (odd) or both ends (even)
-  // var threeThreeInverseReverse = threeThree.clone()...; //reverse entire string
-
   var threeFour = [[1,1,1,1,0,1,1,0,1,1,1,1], //0
                    [0,1,0,1,1,0,0,1,0,1,1,1], //1
                    [1,1,0,0,0,1,0,1,0,1,1,1], //2
@@ -25,10 +21,6 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,0,0,1,0,1,0,0,1,0], //7
                    [1,1,1,0,1,0,1,0,1,0,1,0], //8
                    [1,1,1,1,1,1,0,0,1,1,1,1]];//9
-
-  var threeFourInverse = 0; // divide array by its "width", then switch either end (odd) or both sides (even)
-  var threeFourReverse = 0; // divide array by its "height", then switch either end (odd) or both ends (even)
-  // var threeFourInverseReverse = threeFour.clone()...; //reverse entire string
 
   var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1]  //0
                    [0,1,0,1,1,0,0,1,0,0,1,0,1,1,1], //1
@@ -41,14 +33,20 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1], //8
                    [1,1,1,1,0,1,1,1,1,0,0,1,1,1,1]];//9
 
-  var threeFiveInverse = 0; // divide array by its "width", then switch either end (odd) or both sides (even)
-  var threeFiveReverse = 0; // divide array by it's "height", then switch either end (odd) or both ends (even)
-  // var threeFiveInverseReverse = threeFive.clone()...; //reverse entire string
-
-
+  var fourFour =[[1,1,1,1,1,0,0,1,1,0,0,1,1,1,1,1] //0
+                 [1,1,1,0,0,1,1,0,0,1,1,0,1,1,1,1], //1
+                 [1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1], //2
+                 [1,1,1,1,0,1,1,1,0,0,1,1,1,1,1,1], //3
+                 [1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1], //4
+                 [1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1], //5
+                 [1,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1], //6
+                 [1,1,1,1,0,0,1,1,0,0,1,1,0,0,1,1], //7
+                 [0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1], //8
+                 [1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1]];//9
 
   var gridCounter = 0;
   var turnCounter = 0;
+  var clicked = false;
 
   var targetScoreInput;
   var spriteSizeInput;
@@ -56,7 +54,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   var answer;
   var numberInGrid;
-  var arraySize;  //XXX
+  var puzzles;
 
   var $targetScoreElem = $('#target-score').find('h2');
   var $userGuessElem1 = $('#results-text1').find('h3');
@@ -89,23 +87,29 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       console.log(spriteHeight + spriteHeight);
       //spriteSize()
 
-      if (spriteHeight === 3) {
+      if (spriteWidth === 3 && spriteHeight === 3)  {
+        console.log("S3");  //remove when finished
         $('#instruct-screen').hide();
         $('#game-screen3x3').show();
-        arraySize = threeThree;
+        puzzles = threeThree;
       }
-      else if (spriteHeight === 4) {
-        console.log("S4");
+      else if (spriteWidth === 3 && spriteHeight === 4) {
+        console.log("S4"); //remove when finished
         $('#instruct-screen').hide();
         $('#game-screen3x4').show();
-        arraySize = threeFour;
+        puzzles = threeFour;
       }
-      else {
-        console.log("S5");
+      else if (spriteWidth === 3 && spriteHeight === 4) {
+        console.log("S5"); //remove when finished
         $('#instruct-screen').hide();
         $('#game-screen3x5').show();
-        arraySize = threeFive;
+        puzzles = threeFive;
       }
+      else {
+        console.log("You've broken numGuess!");
+      }
+
+      generateNumber();
 
       // ORIENTATION BUTTON
       // recalculate the array
@@ -119,28 +123,41 @@ $(document).ready(function(){ // do not remove - insert all code in here!
           console.log("O2");
         }
         else if (orientationChoice === "M") {
-          console.log("O3");
+          //numberInGrid = mirrorArray(numberInGrid);
         }
-        else { // Both
-          console.log("O4");
+        else if (orientationChoice === "B") { // Both
+          numberInGrid = inverseMirror(numberInGrid);
+        }
+        else {
+          console.log("You've broken numGuess!");
         }
 
       //$('#instruct-screen').hide();
       //$('#game-screen').show();
 
+      // reverse the array
+
       $('#options').hide();
       $('#play-box').show();
 
-      generateNumber();
+
       highlightPlayer();
       selectCell();
     });
   }
 
+  function inverseMirror(array) {
+    var inverseMirror = [];
+    for (var i = array.length - 1; i >=0; i--) {
+      inverseMirror.push(array[i]);
+    }
+    return inverseMirror;
+  }
+
   function generateNumber() { // generates a random number from the chosen array
     answer = Math.floor(Math.random()*(10));
-    numberInGrid = arraySize[answer]; // need to replace threeThree with a selectable array XXX
-    console.log(numberInGrid); // WHY IS THIS LINE BEING RUN 18 TIMES??!!
+    numberInGrid = puzzles[answer]; // need to replace threeThree with a selectable array XXX
+    console.log(numberInGrid); // Logged many times when "coloring in the grid to reset".
   }
 
   function highlightPlayer () {
@@ -158,6 +175,9 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
     $('#user-pass').show();
     $('#reset-cells').hide();
+
+    $userGuessElem1.text("");
+    $userGuessElem2.text("");
 
     $('.game-cell').one('click', function() {
       var cellId = parseInt($(this).attr('id').substring(1));
@@ -234,12 +254,12 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       resetGrid();
 
       if (pOneScore >= targetScoreInput) { // target is reached, end of game
-        $userGuessElem1.text("Player One Wins");
-        $userGuessElem2.text("Thank you for playing numGuess")
+        $userGuessElem1.text("Player One Wins"); // create modal
+        $userGuessElem2.text("Thank you for playing numGuess");
       }
       else if (pTwoScore >= targetScoreInput) {
         $userGuessElem1.text("Player Two Wins");
-        $userGuessElem2.text("Thank you for playing numGuess")
+        $userGuessElem2.text("Thank you for playing numGuess");
       }
       else {
         resetGrid (); // otherwise, generate another number
@@ -250,10 +270,10 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   function revealAnswer() {
     for(var i = 0; i < numberInGrid.length; i++) {
       if(numberInGrid[i] === 1) {
-        $('#c'+ i).css("background-color","black");
+        $('.c'+ i).css("background-color","black");
       }
       else {
-        $('#c'+ i).css("background-color","white");
+        $('.c'+ i).css("background-color","white");
       }
     }
   }
@@ -265,7 +285,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
     $('#reset-cells').on("click", function () {
       for(var i = 0; i < numberInGrid.length; i++) {
-        $('.game-cell').css("background-color","orange");
+        $('.game-cell').css("background-color","red");
         generateNumber();
         selectCell();
       }
@@ -273,9 +293,11 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   }
 
 
-// PREVENT SAME PLAYER FROM CLICKING MORE THABN ONE CELL - Denis will assist
+// PREVENT SAME PLAYER FROM CLICKING MORE THAN ONE CELL - Denis will assist
 // PREVENT PLAYER FROM CLICKING PASS MULTIPLE TIMES
-// PEVENT THE PLAYER GUESSING AGAIN UNTIL RESEt
+// PREVENT PLAYER GUESSING AGAIN UNTIL RESET
+// ADD SOUND
+// ADD MUSIC - Audio tags in the body.  See info from Carmen.
 
-  bindStartButton()
+  bindStartButton();
 }); // do not remove
