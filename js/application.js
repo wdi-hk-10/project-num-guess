@@ -1,5 +1,4 @@
 $(document).ready(function(){ // do not remove - insert all code in here!
-
   var threeThree = [[1,1,1,1,0,1,1,1,1], //0
                     [1,1,0,0,1,0,1,1,1], //1
                     [1,1,0,0,1,0,0,1,1], //2
@@ -22,7 +21,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,0,1,0,1,0,1,0,1,0], //8
                    [1,1,1,1,1,1,0,0,1,1,1,1]];//9
 
-  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1]  //0
+  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1],  //0
                    [0,1,0,1,1,0,0,1,0,0,1,0,1,1,1], //1
                    [1,1,1,0,0,1,1,1,1,1,0,0,1,1,1], //2
                    [1,1,1,0,0,1,1,1,1,0,0,1,1,1,1], //3
@@ -43,6 +42,8 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                  [1,1,1,1,0,0,1,1,0,0,1,1,0,0,1,1], //7
                  [0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1], //8
                  [1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1]];//9
+
+  var soundIncorrect = new buzz.sound("sounds/incorrect-guess.mp3");
 
   var gridCounter = 0;
   var turnCounter = 0;
@@ -79,14 +80,11 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       // switch selected array
       // append to extend grid
       // amend .game-cell height & width 200x200 for 3x3, 150x150 for 3x4, 120x120 for 3x5
-      console.log("sprite" + spriteSizeInput);
       var spriteWidth = parseInt(spriteSizeInput[0]);
-      console.log(spriteWidth + spriteWidth);
-      //var spriteWidth =
       var spriteHeight = parseInt(spriteSizeInput[2]);
-      console.log(spriteHeight + spriteHeight);
       //spriteSize()
 
+      console.log(spriteSizeInput)
       if (spriteWidth === 3 && spriteHeight === 3)  {
         console.log("S3");  //remove when finished
         $('#instruct-screen').hide();
@@ -99,7 +97,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         $('#game-screen3x4').show();
         puzzles = threeFour;
       }
-      else if (spriteWidth === 3 && spriteHeight === 4) {
+      else if (spriteWidth === 3 && spriteHeight === 5) {
         console.log("S5"); //remove when finished
         $('#instruct-screen').hide();
         $('#game-screen3x5').show();
@@ -112,25 +110,25 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       generateNumber();
 
       // ORIENTATION BUTTON
-      // recalculate the array
+      // recalculate array
       orientationInput = $('#set-orientation').val() || "Normal";
       orientationChoice = orientationInput[0];
       console.log(orientationChoice);
-        if (orientationChoice === "N") {
-          console.log("O1");
-        }
-        else if (orientationChoice === "I") {
-          numberInGrid = inverse(numberInGrid);
-        }
-        else if (orientationChoice === "M") {
-          numberInGrid = mirror(numberInGrid);
-        }
-        else if (orientationChoice === "B") { // Both
-          numberInGrid = inverseMirror(numberInGrid);
-        }
-        else {
-          console.log("You've broken numGuess!");
-        }
+      if (orientationChoice === "N") {
+        console.log("O1");
+      }
+      else if (orientationChoice === "I") {
+        numberInGrid = inverse(numberInGrid);
+      }
+      else if (orientationChoice === "M") {
+        numberInGrid = mirror(numberInGrid);
+      }
+      else if (orientationChoice === "B") { // Both
+        numberInGrid = inverseMirror(numberInGrid);
+      }
+      else {
+        console.log("You've broken numGuess!");
+      }
 
       //$('#instruct-screen').hide();
       //$('#game-screen').show();
@@ -178,7 +176,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   function generateNumber () { // generates a random number from the chosen array
     answer = Math.floor(Math.random()*(10));
     numberInGrid = puzzles[answer]; // need to replace threeThree with a selectable array XXX
-    console.log(numberInGrid); // Logged many times when "coloring in the grid to reset".
+    console.log("gn", numberInGrid); // Logged many times when "coloring in the grid to reset".
   }
 
   function highlightPlayer () {
@@ -200,10 +198,11 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     $userGuessElem1.text("");
     $userGuessElem2.text("");
 
-    $('.game-cell').on('click', function() {
+    $('.game-cell').on("click", function() {
       if (!clicked) { // when click is false
         var cellId = parseInt($(this).attr('id').substring(1));
         var pixel = numberInGrid[cellId];
+        console.log('sc', numberInGrid)
 
         if(pixel === 1) {
           $('.c' + cellId).css("background-color","black");
@@ -212,6 +211,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
           $('.c' + cellId).css("background-color","white");
         }
 
+        gridCounter = gridCounter + 1;
         clicked = true;
       }
 
@@ -226,7 +226,6 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       if (clicked) { // when click is true
         clicked = false;
         turnCounter = turnCounter + 1;
-        //gridCounter = gridCounter + 1;
         highlightPlayer();
       }
     })
@@ -238,13 +237,6 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       if (clicked) { // when click is true
         clicked = false;
         var userGuess = parseInt($(this).val());
-        // checks if user has guessed the number
-        // console.log(typeof(userGuess)); // remove when finished
-        // console.log(userGuess); // remove when finished
-        // console.log(answer); // remove when finished
-        // console.log(numberInGrid) // remove when finished
-        gridCounter = gridCounter + 1;
-        console.log("GC" + gridCounter);
 
         // calcuate score
         calculateScore(userGuess);
@@ -263,40 +255,45 @@ $(document).ready(function(){ // do not remove - insert all code in here!
           $userGuessElem2.text("Thank you for playing numGuess");
         }
         else {
-          resetGrid (); // otherwise, generate another number
+          resetGrid(); // otherwise, generate another number
         }
       }
-      $('.options-buttons li').removeClass('selected');
+      $('.options-buttons li').removeClass('selected'); //stop the guess selector from sticking
     });
   }
 
+
   function calculateScore (userGuess) {
+    var pointsAwarded = answer + (numberInGrid.length - gridCounter);
+    console.log("cs", numberInGrid)
     if (userGuess === answer) {
+      // soundCorrect.play()
       if (turnCounter % 2 === 0) {
         $userGuessElem1.text(userGuess + " is correct Player 1!");
-        $userGuessElem2.text("You score " + (answer + (numberInGrid.length - gridCounter)) + " point(s).");
-        pOneScore = pOneScore + answer + (numberInGrid.length - gridCounter);
+        $userGuessElem2.text("You score " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
+        pOneScore = pOneScore + pointsAwarded;
         $pOneScoreElem.text(pOneScore);
       }
       else {
         $userGuessElem1.text(userGuess + " is correct Player 2!");
-        $userGuessElem2.text("You score " + (answer + (numberInGrid.length - gridCounter)) + " point(s).");
-        pTwoScore = pTwoScore + answer + (numberInGrid.length - gridCounter);
+        $userGuessElem2.text("You score " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
+        pTwoScore = pTwoScore + pointsAwarded;
         $pTwoScoreElem.text(pTwoScore);
       }
     }
     else {
+      soundIncorrect.play();
       if (turnCounter % 2 === 0) {
         $userGuessElem1.text(userGuess + " is wrong!  The correct answer is " + answer + ".");
-        $userGuessElem2.text("Player 2 scores " + (answer + (numberInGrid.length - gridCounter)) + " point(s).");
-        pTwoScore = pTwoScore + answer + (numberInGrid.length - gridCounter);
+        $userGuessElem2.text("Player 2 scores " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
+        pTwoScore = pTwoScore + pointsAwarded;
         $pTwoScoreElem.text(pTwoScore);
 
       }
       else {
         $userGuessElem1.text(userGuess + " is wrong!  The correct answer is " + answer + ".");
-        $userGuessElem2.text("Player 1 scores " + (answer + (numberInGrid.length - gridCounter)) + " point(s).");
-        pOneScore = pOneScore + answer + (numberInGrid.length - gridCounter);
+        $userGuessElem2.text("Player 1 scores " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
+        pOneScore = pOneScore + pointsAwarded;
         $pOneScoreElem.text(pOneScore);
       }
     }
@@ -330,5 +327,5 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 // ADD SOUND
 // ADD MUSIC - Audio tags in the body.  See info from Carmen.
 
-  bindStartButton();
+  bindStartButton();  // start function
 }); // do not remove

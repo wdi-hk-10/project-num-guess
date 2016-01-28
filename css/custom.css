@@ -94,7 +94,13 @@ header h1 {
   display: inline;
   color: white;
   background-color: blue;
-
+}
+#reset-cells {
+  margin-top: 35px;
+  text-align: center;
+  display: inline;
+  color: white;
+  background-color: blue;
 }
 .number-bar {
   background-color: black; /* remove later */
@@ -141,19 +147,19 @@ p { /* instructions */
   width: 200px;
   margin: 0px;
   border: black solid 1px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 #game-screen3x4 .game-cell {
   height: 150px;
   width: 150px;
   margin: 0px;
   border: black solid 1px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 #game-screen3x5 .game-cell {
   height: 120px;
   width: 120px;
   margin: 0px;
   border: black solid 1px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
