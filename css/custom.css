@@ -25,21 +25,35 @@ body {
   padding: 0;
 }
 header h1 {
-  font-size: 120px;
+  font-size: 140px;
   text-align: center;
   margin-bottom: 0px;
 }
 
 /* LEFT SIDE DURING OPTIONS */
 .dropdown-toggle {
-  margin: 10px;
+  margin: 30px;
+  background-color: red;
+  color: white;
+}
+.dropdown-menu {
+  background-color: red;
+  color: white;
+  font-size: 20px;
+}
+.dropdown-menu>li>a {
+  color: white;
+  font-size: 30px;
 }
 .filter-option {
   font-size: 30px;
-  margin: 5px;
+  margin-top: 10px;
 }
 #start-button {
+  margin-top: 30px;
   text-align: center;
+  font-size: 30px;
+  border: solid white 1px;
 }
 /* LEFT SIDE DURING GAME */
 #play-box {
@@ -56,14 +70,31 @@ header h1 {
 }
 .scorebox h2 {
   text-align: center;
-  font-size: 70px;
+  font-size: 80px;
 }
 .scorebox h3 {
   text-align: center;
-  font-size: 35px;
+  font-size: 40px;
+}
+#target-score h2{
+  font-size: 120px;
 }
 #guess-button {
+  margin: 0;
+  padding: 0;
   text-align: center;
+  display: inline;
+}
+.dropdown-toggle>#guess-button {
+  margin-top: 0;
+}
+#user-pass {
+  margin-top: 35px;
+  text-align: center;
+  display: inline;
+  color: white;
+  background-color: blue;
+
 }
 .number-bar {
   background-color: black; /* remove later */
@@ -72,11 +103,12 @@ header h1 {
   text-align: center;
 }
 
+
 /* RIGHT SIDE */
 .right-side {
+  padding: 0;
   background-color: green; /* remove later */
   height: 100%;
-  padding: 0;
 }
 
 /* RIGHT SIDE DURING OPTIONS */
@@ -87,7 +119,7 @@ header h1 {
   padding: 0;
 }
 #instruct-screen h3 {
-  margin-top: 0;
+  margin-top: 0px;
   padding-top: 40px;
   text-align: center;
   font-size: 80px;
@@ -95,30 +127,33 @@ header h1 {
 p { /* instructions */
   padding: 20px 25px;
   text-align: justify;
-  font-size: 25px;
+  font-size: 30px;
  }
 
 /* RIGHT SIDE DURING GAME */
 .game-screen {
   background-color: red;
   height: 100%;
-
+  padding-top: 50px;
 }
 #game-screen3x3 .game-cell {
   height: 200px;
   width: 200px;
   margin: 0px;
   border: black solid 1px;
+  border-radius: 5px;
 }
 #game-screen3x4 .game-cell {
   height: 150px;
   width: 150px;
   margin: 0px;
   border: black solid 1px;
+  border-radius: 5px;
 }
 #game-screen3x5 .game-cell {
   height: 120px;
   width: 120px;
   margin: 0px;
   border: black solid 1px;
+  border-radius: 5px;
 }

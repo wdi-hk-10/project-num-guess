@@ -9,6 +9,7 @@
     <title>numGuess</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
     <script src="js/application.js"></script>
@@ -85,7 +86,7 @@
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
-            <div class="options-buttons col-xs-6 col-xs-push-3"> <!-- options orientation -->
+            <div class="options-buttons col-xs-6 col-xs-push-2"> <!-- options orientation -->
               <select id="user-guess" class="selectpicker col-xs-12" title="Guess Number">
                 <option>0</option>
                 <option>1</option>
@@ -99,12 +100,10 @@
                 <option>9</option>
               </select>
             </div> <!-- options orientation -->
+            <button id="user-pass" class="btn btn-lg btn-default">PASS</button>
           </div> <!-- row -->
           <div class="row">
-            <button id="user-pass" class="btn btn-lg btn-warning">PASS</button>
-          </div> <!-- row -->
-          <div class="row">
-            <button id="reset-cells" class="btn btn-lg btn-warning" style="display: none">RESET</button>
+            <button id="reset-cells" class="btn btn-lg btn-default" style="display: none">RESET</button>
           </div> <!-- row -->
           <div id="results-text1" class="row">
             <h3></h3> <!-- DO NOT DELETE - ingame text added here -->

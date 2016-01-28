@@ -162,3 +162,38 @@ var threeFive=[[1,1,1,
                 1,1,1,
                 0,0,1,
                 1,1,1]];//9
+</div> <!-- row -->
+          <div class="row">
+            <button id="user-pass" class="btn btn-lg btn-default">PASS</button>
+          </div> <!-- row -->
+          <div class="row">
+            <button id="reset-cells" class="btn btn-lg btn-default" style="display: none">RESET</button>
+          </div> <!-- row -->
+
+Normal
+[
+ [1,2,3],
+ [4,5,6],
+ [7,8,9]
+]
+
+Mirror
+[
+ [3,2,1],
+ [6,5,4],
+ [9,8,7]
+]
+
+Inverse
+[
+  [7,8,9],
+  [4,5,6],
+  [1,2,3]
+]
+
+Inverse Mirror
+[
+  [9,8,7],
+  [6,5,4],
+  [3,2,1]
+]
