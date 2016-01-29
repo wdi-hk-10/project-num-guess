@@ -96,20 +96,6 @@ header h1 {
   padding: 18px 30px;
   font-size: 22px;
 }
-/* #reset-cells {
-  margin-top: 35px;
-  text-align: center;
-  display: inline;
-  color: white;
-  background-color: blue;
-}
-#restart {
-  margin-top: 35px;
-  text-align: center;
-  display: inline;
-  color: white;
-  background-color: blue;
-} */
 .number-bar {
   background-color: black; /* remove later */
   clear: both;

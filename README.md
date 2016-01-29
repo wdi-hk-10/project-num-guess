@@ -1,5 +1,10 @@
 # project-num-guess
 
+Enjoy the game!
+
+
+
+
 Explanations of...
 
 ...technologies used
@@ -8,18 +13,20 @@ CSS3
 Bootstrap
 JavaScript
 jQuery
-MP3 (sound)
+Buzz(for sound effects)
 
 ...approach taken
-
 
 ...installation instructions
 None
 
-...unsolved problems
+
+Challenges
 reversing an array
 preventing muliple clicks on the pass button, grid cells
 styling the dropdown boxes
 missing a comma on an array
+
+...unsolved problems
 
 etc.
