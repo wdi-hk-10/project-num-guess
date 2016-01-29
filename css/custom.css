@@ -87,16 +87,14 @@ header h1 {
   text-align: center;
   display: inline;
 }
-#user-guess.dropdown-menu>li>a {
-  color: white;
-  font-size: 15px;
-}
 #user-pass, #reset-cells-button, #restart-button {
-  margin-top: 35px;
+  margin-top: 31px;
   text-align: center;
   display: inline;
   color: white;
   background-color: blue;
+  padding: 18px 30px;
+  font-size: 22px;
 }
 /* #reset-cells {
   margin-top: 35px;

@@ -21,7 +21,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,0,1,0,1,0,1,0,1,0], //8
                    [1,1,1,1,1,1,0,0,1,1,1,1]];//9
 
-  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1],  //0
+  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1], //0
                    [0,1,0,1,1,0,0,1,0,0,1,0,1,1,1], //1
                    [1,1,1,0,0,1,1,1,1,1,0,0,1,1,1], //2
                    [1,1,1,0,0,1,1,1,1,0,0,1,1,1,1], //3
@@ -69,10 +69,10 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   var $pOneScoreElem = $('#player-one-score').find('h2');
   var $pTwoScoreElem = $('#player-two-score').find('h2');
 
-  init();
+  init(); // start code
 
   function init () {
-    bindStartButton();  // start function
+    bindStartButton();
     bindUserPass();
     bindUserGuess();
     bindReset();
@@ -81,19 +81,15 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   // STEP 1
   function bindStartButton () {
     $('#start-button').on("click", function(){
-      // feat. get input from dropdown
       // feat. depending on what input, show different screen
       targetScoreInput = $('#set-target-score').val() || DEFAULT_TARGET;
       $targetScoreElem.text(targetScoreInput);
 
       spriteSizeInput = $('#set-sprite-size').val() || "3x3";
-      // SPRITE SIZE BUTTON
       // switch selected array
-      // append to extend grid
-      // amend .game-cell height & width 200x200 for 3x3, 150x150 for 3x4, 120x120 for 3x5
+
       var spriteWidth = parseInt(spriteSizeInput[0]);
       var spriteHeight = parseInt(spriteSizeInput[2]);
-      //spriteSize()
 
       console.log(spriteSizeInput)
       if (spriteWidth === 3 && spriteHeight === 3)  {
@@ -123,9 +119,9 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       // ORIENTATION BUTTON
       // recalculate array
       orientationInput = $('#set-orientation').val() || "Normal";
-      var orientationChoice = orientationInput[0];
+      var orientationChoice = orientationInput[0]; // change to .val()
       console.log(orientationChoice);
-      if (orientationChoice === "N") {
+      if (orientationChoice === "N") { // N = Normal
         numberInGrid = numberInGrid;
       }
       else if (orientationChoice === "I") {
@@ -134,15 +130,12 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       else if (orientationChoice === "M") {
         numberInGrid = mirror(numberInGrid);
       }
-      else if (orientationChoice === "B") { // Both
+      else if (orientationChoice === "B") { // B = Both
         numberInGrid = inverseMirror(numberInGrid);
       }
       else {
         console.log("You've broken numGuess!");
       }
-
-      //$('#instruct-screen').hide();
-      //$('#game-screen').show();
 
       $('#options').hide();
       $('#play-box').show();
@@ -210,10 +203,10 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     return inverseMirrorArray;
   }
 
-  function generateNumber () { // generates a random number from the chosen array
+  function generateNumber () { // generates random number from the chosen array
     answer = Math.floor(Math.random()*(10));
     numberInGrid = puzzles[answer];
-    //console.log("gn", numberInGrid); // will console log an array many times when "coloring in the grid to reset".
+    //console.log("gn", numberInGrid); // will console log an array many times when "coloring in" the grid to reset.
   }
 
   function highlightPlayer () {
@@ -240,7 +233,6 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       if (!clicked) { // when click is false
         var cellId = parseInt($(this).attr('id').substring(1));
         var pixel = numberInGrid[cellId];
-        //console.log('sc', numberInGrid)
 
         if(pixel === 1) {
           $('.c' + cellId).css("background-color","black");
@@ -300,7 +292,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
           $('#user-guess').val('').selectpicker('refresh');
         }
       }
-      $('.options-buttons li').removeClass('selected'); //stop the guess selector from sticking
+      $('.options-buttons li').removeClass('selected'); //stop guess selector from sticking
     });
   }
 
@@ -378,8 +370,9 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     });
   }
 
-// ensure orientation stays the same throughout the game
+// ensure orientation stays the same throughout game
 // add text explaining what mode you're in
 // if nobody guesses the game hangs
+// use append to extend grid
 
 }); // do not remove
