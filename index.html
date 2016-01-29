@@ -104,13 +104,16 @@
               </select>
             </div> <!-- options orientation -->
             <button id="user-pass" class="btn btn-lg btn-default">PASS</button>
-            <button id="reset-cells" class="btn btn-lg btn-default" style="display: none">RESET</button>
+            <button id="reset-cells-button" class="btn btn-lg btn-default" style="display: none">NEW ROUND</button>
             <button id="restart-button" class="btn btn-lg btn-default" style="display: none">RESTART</button>
           </div> <!-- row -->
           <div id="results-text1" class="row">
             <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
            </div> <!-- NB1 row -->
            <div id="results-text2" class="row">
+            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
+          </div> <!-- NB2 row -->
+          <div id="results-text3" class="row">
             <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
           </div> <!-- NB2 row -->
         </div> <!-- play-box -->
@@ -120,9 +123,11 @@
       <section class="right-side col-xs-6"> <!-- right-side-->
         <div id="instruct-screen"> <!-- hide when game starts -->
           <h3>Instructions</h3>
-          <p>Click a square to reveal part of a number between 0 and 9.  Can you guess what it is?</p>
-          <p>Guess correctly to score the value of the number plus one point for each remaining square uncovered.  (For example, guessing the number 7 with 4 squares still covered would score 11 points.)</p>
-          <p>Guess incorrectly and the points are awarded to your opponent.</p>
+          <p>Player one clicks a square to reveal part of a number between 0 and 9.</p>
+          <p>They can either guess the number or pass the turn to player 2.</p>
+          <p>Guess correctly to score the value of that number, plus a point for each remaining square uncovered.  (For example, guessing the number 7 with 4 squares still covered would score 11 points.)</p>
+          <p>Guess incorrectly and the points are awarded to the opposing player.</p>
+          <p>The game continues until one of the players reaches the chosen target score.</p>
         </div> <!-- instruct & start -->
 
         <!-- RIGHT SIDE DURING GAME ONLY (3x3)-->

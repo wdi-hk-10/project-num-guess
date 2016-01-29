@@ -25,9 +25,10 @@ body {
   padding: 0;
 }
 header h1 {
-  font-size: 140px;
+  font-size: 160px;
   text-align: center;
   margin-bottom: 0px;
+  margin-top: 20px;
 }
 
 /* LEFT SIDE DURING OPTIONS */
@@ -54,8 +55,9 @@ header h1 {
   text-align: center;
   font-size: 30px;
   border: solid white 1px;
-}
+
 /* LEFT SIDE DURING GAME */
+}
 #play-box {
   text-align: center;
 }
@@ -63,7 +65,7 @@ header h1 {
   margin: 0;
 }
 .scorebox {
-  background-color: red; /* remove later */
+  background-color: red;
   margin: 10px;
   border-radius: 10px;
   text-align: center;
@@ -79,16 +81,17 @@ header h1 {
 #target-score h2{
   font-size: 120px;
 }
-#guess-button {
+#user-guess {
   margin: 0;
   padding: 0;
   text-align: center;
   display: inline;
 }
-.dropdown-toggle>#guess-button {
-  margin-top: 0;
+#user-guess.dropdown-menu>li>a {
+  color: white;
+  font-size: 15px;
 }
-#user-pass, #reset-cells, #restart-button {
+#user-pass, #reset-cells-button, #restart-button {
   margin-top: 35px;
   text-align: center;
   display: inline;
@@ -117,7 +120,7 @@ header h1 {
 }
 
 
-/* RIGHT SIDE */
+/* RIGHT SIDE ALL */
 .right-side {
   padding: 0;
   background-color: green; /* remove later */
@@ -133,12 +136,12 @@ header h1 {
 }
 #instruct-screen h3 {
   margin-top: 0px;
-  padding-top: 40px;
+  padding-top: 120px;
   text-align: center;
   font-size: 80px;
 }
 p { /* instructions */
-  padding: 20px 25px;
+  padding: 10px 80px 10px 5px;
   text-align: justify;
   font-size: 30px;
  }
@@ -147,7 +150,7 @@ p { /* instructions */
 .game-screen {
   background-color: red;
   height: 100%;
-  padding-top: 50px;
+  padding-top: 100px;
 }
 #game-screen3x3 .game-cell {
   height: 200px;

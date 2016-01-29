@@ -49,7 +49,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   var gridCounter = 0;
   var turnCounter = 0;
   var clicked = false;
-  var DEFAULT_TARGET = 20;
+  var DEFAULT_TARGET = 1;
 
   var targetScoreInput;
   var spriteSizeInput;
@@ -62,6 +62,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   var $targetScoreElem = $('#target-score').find('h2');
   var $userGuessElem1 = $('#results-text1').find('h3');
   var $userGuessElem2 = $('#results-text2').find('h3');
+  var $userGuessElem3 = $('#results-text3').find('h3');
 
   var pOneScore = 0;
   var pTwoScore = 0;
@@ -122,7 +123,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       // ORIENTATION BUTTON
       // recalculate array
       orientationInput = $('#set-orientation').val() || "Normal";
-      orientationChoice = orientationInput[0];
+      var orientationChoice = orientationInput[0];
       console.log(orientationChoice);
       if (orientationChoice === "N") {
         numberInGrid = numberInGrid;
@@ -151,28 +152,54 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     });
   }
 
+  function toTwoDArr (array) {
+    var twoDArr = [];
+    var timesToRun = array.length / 3;
+    var offset = 0;
+    for (var i = 0; i < timesToRun; i++){
+      var tmp = [array[i + offset], array[i + offset + 1], array[i + offset + 2]];
+      twoDArr.push(tmp);
+      offset += 2;
+    }
+    return twoDArr;
+  }
+
+  function toOneDArr (array) {
+    var oneDArr = [];
+    for (var i=0; i < array.length; i++){
+      for (var j=0; j < array[i].length; j++){
+        oneDArr.push(array[i][j]);
+      }
+    }
+    return oneDArr;
+  }
+
   function inverse (array) {
     var inverseArray = [];
-    for (var i = array.length - 1; i >= 0; i--) {
+    var twoDArr = toTwoDArr(array);
+    for (var i = twoDArr.length - 1; i >= 0; i--) {
       var tmp = [];
-      for (var j = 0; j < array[i].length; j++){
-        tmp.push(array[i][j]);
+      for (var j = 0; j < twoDArr[i].length; j++){
+        tmp.push(twoDArr[i][j]);
       }
       inverseArray.push(tmp);
     }
-    return inverseArray;
+    var oneDArr = toOneDArr(inverseArray);
+    return oneDArr;
   }
 
   function mirror (array) {
     var mirrorArray = [];
-    for (var i = 0; i < array.length; i++) {
+    var twoDArr = toTwoDArr(array);
+    for (var i = 0; i < twoDArr.length; i++) {
       var tmp = [];
-      for (var j = array[i].length - 1; 0 <= j ; j--){
-        tmp.push(array[i][j]);
+      for (var j = twoDArr[i].length - 1; 0 <= j ; j--){
+        tmp.push(twoDArr[i][j]);
       }
       mirrorArray.push(tmp);
     }
-    return mirrorArray;
+    var oneDArr = toOneDArr(mirrorArray);
+    return oneDArr;
   }
 
   function inverseMirror (array) {
@@ -202,10 +229,12 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   function selectCell () {
     $('#user-pass').show();
-    $('#reset-cells').hide();
+    $('#reset-cells-button').hide();
 
     $userGuessElem1.text("");
     $userGuessElem2.text("");
+    $userGuessElem3.text("");
+
 
     $('.game-cell').on("click", function() {
       if (!clicked) { // when click is false
@@ -223,8 +252,8 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         gridCounter = gridCounter + 1;
         clicked = true;
         // console.log(gridCounter);
-        // if (gridCounter >= numberInGrid.length) {
-        // $userGuessElem1.text("The number is " + answer +".");
+        //if (gridCounter >= numberInGrid.length) {
+        //$userGuessElem1.text("The number is " + answer +".");
         //}
       }
     });
@@ -257,19 +286,17 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         resetGrid();
 
         if (pOneScore >= targetScoreInput) { // target is reached, end of game
-          $userGuessElem1.text("Player One Wins"); // create modal
-          $userGuessElem2.text("Thank you for playing numGuess");
-          $('#restart-button').show(); // JUST ADDED]
-          $('#reset-cells').hide(); // JUST ADDED
-          $('#user-pass').hide(); // JUST ADDED
+          $userGuessElem3.text("Player One wins.  Thank you for playing numGuess."); // create modal
+          $('#restart-button').show();
+          $('#reset-cells-button').hide();
+          $('#user-pass').hide();
           $('#user-guess').val('').selectpicker('refresh');
         }
         else if (pTwoScore >= targetScoreInput) {
-          $userGuessElem1.text("Player Two Wins");
-          $userGuessElem2.text("Thank you for playing numGuess");
-          $('#restart-button').show(); // JUST ADDED
-          $('#reset-cells').hide(); // JUST ADDED
-          $('#user-pass').hide(); // JUST ADDED
+          $userGuessElem3.text("Player Two wins. Thank you for playing numGuess.");
+          $('#restart-button').show();
+          $('#reset-cells-button').hide();
+          $('#user-pass').hide();
           $('#user-guess').val('').selectpicker('refresh');
         }
       }
@@ -278,14 +305,14 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   }
 
   function bindReset () {
-    $('#restart-button').on("click", function(){ // JUST ADDED
-      $('#restart-button').hide(); //JUST ADDED
+    $('#restart-button').on("click", function(){
+      $('#restart-button').hide();
       $('#start-button').click();
-      $('#reset-cells').click();
-      pOneScore = 0;
-      pTwoScore = 0;
-      $pOneScoreElem.text(pOneScore);
-      $pTwoScoreElem.text(pTwoScore);
+      $('#reset-cells-button').click();
+      pOneScore = 0; // fix
+      pTwoScore = 0; // fix
+      $pOneScoreElem.text(pOneScore); // fix
+      $pTwoScoreElem.text(pTwoScore); // fix
     });
   }
 
@@ -339,9 +366,9 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   function resetGrid () { // reset grid to background colour
     gridCounter = 0;
     $('#user-pass').hide();
-    $('#reset-cells').show();
+    $('#reset-cells-button').show();
 
-    $('#reset-cells').off().on("click", function () {
+    $('#reset-cells-button').off().on("click", function () {
       for(var i = 0; i < numberInGrid.length; i++) {
         $('.game-cell').css("background-color","red");
         generateNumber(); // ensure that the correct orientation mode is selected
@@ -350,11 +377,9 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       }
     });
   }
-// ADD SOUND
 
-// inverse and mifror arrays returning a white square in 3 by 5
-// how do  ensure that the orientation stays the same throughout the game
-// add text explaining what mode you're in.
+// ensure orientation stays the same throughout the game
+// add text explaining what mode you're in
 // if nobody guesses the game hangs
 
 }); // do not remove
