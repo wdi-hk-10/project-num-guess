@@ -86,7 +86,6 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       $targetScoreElem.text(targetScoreInput);
 
       spriteSizeInput = $('#set-sprite-size').val() || "3x3";
-      // switch selected array
 
       var spriteWidth = parseInt(spriteSizeInput[0]);
       var spriteHeight = parseInt(spriteSizeInput[2]);
@@ -94,19 +93,19 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       console.log(spriteSizeInput)
       if (spriteWidth === 3 && spriteHeight === 3)  {
         console.log("S3");  //remove when finished
-        $('#instruct-screen').hide();
+        $('#instructions-screen').hide();
         $('#game-screen3x3').show();
         puzzles = threeThree;
       }
       else if (spriteWidth === 3 && spriteHeight === 4) {
         console.log("S4"); //remove when finished
-        $('#instruct-screen').hide();
+        $('#instructions-screen').hide();
         $('#game-screen3x4').show();
         puzzles = threeFour;
       }
       else if (spriteWidth === 3 && spriteHeight === 5) {
         console.log("S5"); //remove when finished
-        $('#instruct-screen').hide();
+        $('#instructions-screen').hide();
         $('#game-screen3x5').show();
         puzzles = threeFive;
       }
@@ -114,30 +113,27 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         console.log("You've broken numGuess!");
       }
 
+      // recalculate array
       generateNumber();
 
       // ORIENTATION BUTTON
-      // recalculate array
-      orientationInput = $('#set-orientation').val() || "Normal";
-      var orientationChoice = orientationInput[0]; // change to .val()
-      console.log(orientationChoice);
-      if (orientationChoice === "N") { // N = Normal
-        numberInGrid = numberInGrid;
+      orientationInput = $('#set-orientation').val() || "normal";
+      if (orientationInput === "normal") {
       }
-      else if (orientationChoice === "I") {
+      else if (orientationInput === "inverse") {
         numberInGrid = inverse(numberInGrid);
       }
-      else if (orientationChoice === "M") {
+      else if (orientationInput === "mirror") {
         numberInGrid = mirror(numberInGrid);
       }
-      else if (orientationChoice === "B") { // B = Both
+      else if (orientationInput === "inverse-mirror") {
         numberInGrid = inverseMirror(numberInGrid);
       }
       else {
         console.log("You've broken numGuess!");
       }
 
-      $('#options').hide();
+      $('#options-screen').hide();
       $('#play-box').show();
 
       highlightPlayer();
@@ -221,7 +217,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   }
 
   function selectCell () {
-    $('#user-pass').show();
+    $('#pass-button').show();
     $('#reset-cells-button').hide();
 
     $userGuessElem1.text("");
@@ -253,7 +249,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   // STEP 2A
   function bindUserPass () {
-    $('#user-pass').off().on("click", function() {
+    $('#pass-button').off().on("click", function() {
       if (clicked) { // when click is true
         clicked = false;
         turnCounter = turnCounter + 1;
@@ -264,7 +260,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   // STEP 2B
   function bindUserGuess () {
-    $('#user-guess').off().on("change", function() {
+    $('#guess-button').off().on("change", function() {
       if (clicked) { // when click is true
         clicked = false;
         var userGuess = parseInt($(this).val());
@@ -281,15 +277,15 @@ $(document).ready(function(){ // do not remove - insert all code in here!
           $userGuessElem3.text("Player One wins.  Thank you for playing numGuess."); // create modal
           $('#restart-button').show();
           $('#reset-cells-button').hide();
-          $('#user-pass').hide();
-          $('#user-guess').val('').selectpicker('refresh');
+          $('#pass-button').hide();
+          $('#guess-button').val('').selectpicker('refresh');
         }
         else if (pTwoScore >= targetScoreInput) {
           $userGuessElem3.text("Player Two wins. Thank you for playing numGuess.");
           $('#restart-button').show();
           $('#reset-cells-button').hide();
-          $('#user-pass').hide();
-          $('#user-guess').val('').selectpicker('refresh');
+          $('#pass-button').hide();
+          $('#guess-button').val('').selectpicker('refresh');
         }
       }
       $('.options-buttons li').removeClass('selected'); //stop guess selector from sticking
@@ -308,39 +304,29 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     });
   }
 
+
+
   function calculateScore (userGuess) {
-    var pointsAwarded = answer + (numberInGrid.length - gridCounter);
+    var bonus = (numberInGrid.length - gridCounter);
+    var pointsAwarded = answer + bonus;
     //console.log("cs", numberInGrid)
     if (userGuess === answer) {
       soundCorrect.play();
-      if (turnCounter % 2 === 0) {
-        $userGuessElem1.text(userGuess + " is correct Player 1!");
-        $userGuessElem2.text("You score " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
-        pOneScore = pOneScore + pointsAwarded;
-        $pOneScoreElem.text(pOneScore);
-      }
-      else {
-        $userGuessElem1.text(userGuess + " is correct Player 2!");
-        $userGuessElem2.text("You score " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
-        pTwoScore = pTwoScore + pointsAwarded;
-        $pTwoScoreElem.text(pTwoScore);
-      }
+      $userGuessElem1.text("The number " + userGuess + " is correct!");
+      $userGuessElem2.text("You score " + pointsAwarded + " (" + answer + " + " + bonus + ") point(s).");
     }
     else {
       soundIncorrect.play();
-      if (turnCounter % 2 === 0) {
-        $userGuessElem1.text(userGuess + " is wrong!  The correct answer is " + answer + ".");
-        $userGuessElem2.text("Player 2 scores " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
-        pTwoScore = pTwoScore + pointsAwarded;
-        $pTwoScoreElem.text(pTwoScore);
-
-      }
-      else {
-        $userGuessElem1.text(userGuess + " is wrong!  The correct answer is " + answer + ".");
-        $userGuessElem2.text("Player 1 scores " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
-        pOneScore = pOneScore + pointsAwarded;
-        $pOneScoreElem.text(pOneScore);
-      }
+      $userGuessElem1.text("The number is " + answer + " ,not " + userGuess + ".");
+      $userGuessElem2.text("Your opponent scores " + pointsAwarded + " (" + answer + " + " + bonus + ") point(s).");
+    }
+    if (turnCounter % 2 === 0 && userGuess === answer || turnCounter % 2 !== 0 && userGuess !== answer)  {
+      pOneScore = pOneScore + pointsAwarded;
+      $pOneScoreElem.text(pOneScore);
+    }
+    else {
+      pTwoScore = pTwoScore + pointsAwarded;
+      $pTwoScoreElem.text(pTwoScore);
     }
   }
 
@@ -357,7 +343,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   function resetGrid () { // reset grid to background colour
     gridCounter = 0;
-    $('#user-pass').hide();
+    $('#pass-button').hide();
     $('#reset-cells-button').show();
 
     $('#reset-cells-button').off().on("click", function () {
@@ -365,12 +351,12 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         $('.game-cell').css("background-color","red");
         generateNumber(); // ensure that the correct orientation mode is selected
         selectCell();
-        $('#user-guess').val('').selectpicker('refresh');
+        $('#guess-button').val('').selectpicker('refresh');
       }
     });
   }
 
-// ensure orientation stays the same throughout game
+// ensure orientation stays the same for each game
 // add text explaining what mode you're in
 // if nobody guesses the game hangs
 // use append to extend grid

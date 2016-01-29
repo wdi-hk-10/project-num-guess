@@ -27,7 +27,7 @@ body {
 header h1 {
   font-size: 160px;
   text-align: center;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-top: 20px;
 }
 
@@ -70,25 +70,25 @@ header h1 {
   border-radius: 10px;
   text-align: center;
 }
-.scorebox h2 {
+.scorebox h2 { /* Heading (h2) should not be qualified */
   text-align: center;
   font-size: 80px;
 }
-.scorebox h3 {
+.scorebox h3 { /* Heading (h3) should not be qualified */
   text-align: center;
   font-size: 40px;
 }
-#target-score h2{
+#target-score h2{ /* Heading (h3) should not be qualified */
   font-size: 120px;
 }
-#user-guess {
-  margin: 0;
+#guess-button {
+  margin: 0; /* margin can't be used with display: inline */
   padding: 0;
   text-align: center;
   display: inline;
 }
-#user-pass, #reset-cells-button, #restart-button {
-  margin-top: 31px;
+#pass-button, #reset-cells-button, #restart-button {
+  margin-top: 31px; /* margin-top can't be used with display: inline */
   text-align: center;
   display: inline;
   color: white;
@@ -112,14 +112,14 @@ header h1 {
 }
 
 /* RIGHT SIDE DURING OPTIONS */
-#instruct-screen {
+#instructions-screen {
   background-color: red; /* remove later */
   height: 100%;
   text-align: center;
   padding: 0;
 }
-#instruct-screen h3 {
-  margin-top: 0px;
+#instructions-screen h3 { /* Heading (h3) should not be qualified */
+  margin-top: 0;
   padding-top: 120px;
   text-align: center;
   font-size: 80px;
@@ -139,21 +139,21 @@ p { /* instructions */
 #game-screen3x3 .game-cell {
   height: 200px;
   width: 200px;
-  margin: 0px;
+  margin: 0;
   border: black solid 1px;
   border-radius: 10px;
 }
 #game-screen3x4 .game-cell {
   height: 150px;
   width: 150px;
-  margin: 0px;
+  margin: 0;
   border: black solid 1px;
   border-radius: 10px;
 }
 #game-screen3x5 .game-cell {
   height: 120px;
   width: 120px;
-  margin: 0px;
+  margin: 0;
   border: black solid 1px;
   border-radius: 10px;
 }
