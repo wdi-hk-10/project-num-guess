@@ -49,7 +49,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   var gridCounter = 0;
   var turnCounter = 0;
   var clicked = false;
-  var DEFAULT_TARGET = 1;
+  var DEFAULT_TARGET = 20;
 
   var targetScoreInput;
   var spriteSizeInput;
