@@ -1,7 +1,14 @@
+/* ALL DOCUMENT */
+
+@font-face {
+  font-family: myFirstFont;
+  src: url(../Arcade.ttf);
+  color: #fffafa;
+}
 body {
   color: #fffafa; /* off-white */
   background-color: #293542; /* slate */
-  font-family: Arial; /* add more */
+  font-family: myFirstFont, Arial; /* add more */
 }
 .container-fluid {
   padding: 0;
@@ -10,28 +17,47 @@ body {
 .row {
   margin: 0;
 }
+
 /* LEFT SIDE ALL */
 .left-side {
   background-color: red; /* remove later */
   height: 100%;
   padding: 0;
 }
-h1 {
-  font-size: 80px;
+header h1 {
+  font-size: 160px;
   text-align: center;
+  margin-bottom: 0px;
+  margin-top: 20px;
 }
+
 /* LEFT SIDE DURING OPTIONS */
 .dropdown-toggle {
-  margin: 10px;
+  margin: 30px;
+  background-color: red;
+  color: white;
 }
-.selectpicker {
+.dropdown-menu {
+  background-color: red;
+  color: white;
   font-size: 20px;
+}
+.dropdown-menu>li>a {
+  color: white;
+  font-size: 30px;
 }
 .filter-option {
   font-size: 30px;
-  margin: 5px;
+  margin-top: 10px;
 }
+#start-button {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 30px;
+  border: solid white 1px;
+
 /* LEFT SIDE DURING GAME */
+}
 #play-box {
   text-align: center;
 }
@@ -39,16 +65,36 @@ h1 {
   margin: 0;
 }
 .scorebox {
-  background-color: green; /* remove later */
+  background-color: red;
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   text-align: center;
 }
-.scorebox h1,h2 {
+.scorebox h2 {
   text-align: center;
+  font-size: 80px;
 }
-#guess-button {
+.scorebox h3 {
   text-align: center;
+  font-size: 40px;
+}
+#target-score h2{
+  font-size: 120px;
+}
+#user-guess {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: inline;
+}
+#user-pass, #reset-cells-button, #restart-button {
+  margin-top: 31px;
+  text-align: center;
+  display: inline;
+  color: white;
+  background-color: blue;
+  padding: 18px 30px;
+  font-size: 22px;
 }
 .number-bar {
   background-color: black; /* remove later */
@@ -57,37 +103,57 @@ h1 {
   text-align: center;
 }
 
-/* RIGHT SIDE */
+
+/* RIGHT SIDE ALL */
 .right-side {
+  padding: 0;
   background-color: green; /* remove later */
   height: 100%;
-  padding: 0;
 }
+
 /* RIGHT SIDE DURING OPTIONS */
 #instruct-screen {
-  background-color: blue; /* remove later */
+  background-color: red; /* remove later */
   height: 100%;
   text-align: center;
   padding: 0;
 }
 #instruct-screen h3 {
-  margin-top: 0;
-  padding-top: 20px;
-  font-size: 30px;
+  margin-top: 0px;
+  padding-top: 120px;
   text-align: center;
+  font-size: 80px;
 }
 p { /* instructions */
-  padding: 40px;
+  padding: 10px 80px 10px 5px;
   text-align: justify;
+  font-size: 30px;
+ }
+
 /* RIGHT SIDE DURING GAME */
-}
-#game-screen {
-  background-color: orange; /* remove later */
+.game-screen {
+  background-color: red;
   height: 100%;
+  padding-top: 100px;
 }
-.game-box {
+#game-screen3x3 .game-cell {
   height: 200px;
   width: 200px;
   margin: 0px;
-  border: black solid 2px;
+  border: black solid 1px;
+  border-radius: 10px;
+}
+#game-screen3x4 .game-cell {
+  height: 150px;
+  width: 150px;
+  margin: 0px;
+  border: black solid 1px;
+  border-radius: 10px;
+}
+#game-screen3x5 .game-cell {
+  height: 120px;
+  width: 120px;
+  margin: 0px;
+  border: black solid 1px;
+  border-radius: 10px;
 }

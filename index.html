@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>numGuess</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
     <script src="js/application.js"></script>
@@ -19,6 +19,9 @@
   </head>
 
   <body>
+    <!-- <audio autoplay loop>
+      <source src="sounds/8-punk-8-bit-music.mp3">
+    </audio> -->
 
     <div class="container-fluid">
       <!-- LEFT SIDE ON OPTIONS AND DURING GAME -->
@@ -31,117 +34,211 @@
         <div id="options"> <!-- style="display: none"--> <!-- hide when game starts -->
           <div class="row">
             <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options target score -->
-              <select id="target-score" class="selectpicker col-xs-12" title="Choose Target Score">
+              <select id="set-target-score" class="selectpicker col-xs-12" title="Target Score">
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
                 <option>50</option>
-                <option>100</option>
-                <option>150</option>
               </select>
             </div> <!-- options target score -->
           </div>  <!-- row -->
 
           <div class="row">
             <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options sprite size -->
-              <select class="selectpicker col-xs-12" title="Choose Sprite Size">
+              <select id="set-sprite-size" class="selectpicker col-xs-12" title="Sprite Size">
                 <option>3x3</option>
-                <option>4x4</option>
-                <option>3x6</option>
+                <option>3x4</option>
+                <option>3x5</option>
               </select>
             </div> <!-- options sprite size -->
           </div> <!-- row -->
 
           <div class="row">
             <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options orientation -->
-              <select class="selectpicker col-xs-12" title="Choose Orientation">
+              <select id="set-orientation" class="selectpicker col-xs-12" title="Orientation">
                 <option>Normal</option>
-                <option>Inverse</option>
+                <option>Inverse (Upside-down)</option>
                 <option>Mirror</option>
+                <option>Both (Inverse Mirror)</option>
               </select>
             </div> <!-- options orientation -->
           </div> <!-- row -->
+
+          <div class="row">
+              <button type="button" id="start-button" class="btn btn-lg btn-success col-xs-4 col-xs-push-4">Start</button>
+          </div>
+
         </div> <!-- id=options -->
 
         <!-- LEFT SIDE DURING GAME ONLY -->
         <div id="play-box" style="display: none"> <!-- style="display: none"-->
           <div class="row" id="all-scoreboxes">
             <div id="player-one-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h2>Player 1</h2>
-              <h3>0</h3>
+              <h3>Player 1</h3>
+              <h2>0</h2>
             </div> <!-- col-xs-4 -->
 
             <div id="target-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h2>Target</h2>
-              <h3>0</h3>
+              <h3>Target</h3>
+              <h2>0</h2>
             </div> <!-- col-xs-4 -->
 
             <div id="player-two-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h2>Player 2</h2>
-              <h3>0</h3>
+              <h3>Player 2</h3>
+              <h2>0</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
-            <button type="button" id="guess-button" class="btn btn-lg btn-success">Guess</button>
+            <div class="options-buttons col-xs-6 col-xs-push-2"> <!-- options orientation -->
+              <select id="user-guess" class="selectpicker col-xs-12" title="Guess Number">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+              </select>
+            </div> <!-- options orientation -->
+            <button id="user-pass" class="btn btn-lg btn-default">PASS</button>
+            <button id="reset-cells-button" class="btn btn-lg btn-default" style="display: none">NEW ROUND</button>
+            <button id="restart-button" class="btn btn-lg btn-default" style="display: none">RESTART</button>
           </div> <!-- row -->
-          <div class="row">
-            <h1>Number Box 1</h1>
-            <h1>Number Box 2</h1>
-          </div> <!-- row -->
+          <div id="results-text1" class="row">
+            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
+           </div> <!-- NB1 row -->
+           <div id="results-text2" class="row">
+            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
+          </div> <!-- NB2 row -->
+          <div id="results-text3" class="row">
+            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
+          </div> <!-- NB2 row -->
         </div> <!-- play-box -->
-
       </section> <!-- left side -->
 
       <!-- RIGHT SIDE DURING OPTIONS ONLY -->
       <section class="right-side col-xs-6"> <!-- right-side-->
-
-        <div id="instruct-screen" style="display: none"> <!-- hide when game starts -->
+        <div id="instruct-screen"> <!-- hide when game starts -->
           <h3>Instructions</h3>
-          <p>Click a square and try to guess the number hidden behind the grid. Guess correctly and score the value of the number plus one point for each remaining square uncovered.  (Eg guessing the number 7 with 4 uncovered squares would score 11 points.)  Guess incorrectly and the points are awaded to your opponent.</p>
-          <button type="button" id="start-button" class="btn btn-lg btn-success">Start</button>
+          <p>Player one clicks a square to reveal part of a number between 0 and 9.</p>
+          <p>They can either guess the number or pass the turn to player 2.</p>
+          <p>Guess correctly to score the value of that number, plus a point for each remaining square uncovered.  (For example, guessing the number 7 with 4 squares still covered would score 11 points.)</p>
+          <p>Guess incorrectly and the points are awarded to the opposing player.</p>
+          <p>The game continues until one of the players reaches the chosen target score.</p>
         </div> <!-- instruct & start -->
 
-        <!-- RIGHT SIDE DURING GAME ONLY -->
-        <div id="game-screen"> <!-- hide when game ends -->
+        <!-- RIGHT SIDE DURING GAME ONLY (3x3)-->
+        <div id="game-screen3x3" class="game-screen" style="display: none"> <!-- hide when game ends -->
           <div class="row">
-            <div id="one" class="game-box col-xs-4">
-              <h2>1</h2>
+            <div id="c0" class="c0 game-cell col-xs-4">
             </div> <!-- col-xs-4 -->
-
-            <div id="two" class="game-box col-xs-4">
-              <h2>2</h2>
+            <div id="c1" class="c1 game-cell col-xs-4">
             </div> <!-- col-xs-4 -->
-
-            <div id="three" class="game-box col-xs-4">
-              <h2>3</h2>
+            <div id="c2" class="c2 game-cell col-xs-4">
             </div>
           </div> <!-- row -->
           <div class="row">
-            <div id="four" class="game-box col-xs-4">
-              <h2>4</h2>
+            <div id="c3" class="c3 game-cell col-xs-4">
             </div> <!-- col-xs-4 -->
-
-            <div id="five" class="game-box col-xs-4">
-              <h2>5</h2>
+            <div id="c4" class="c4 game-cell col-xs-4">
             </div> <!-- col-xs-4 -->
-
-            <div id="six" class="game-box col-xs-4">
-              <h2>6</h2>
+            <div id="c5" class="c5 game-cell col-xs-4">
             </div>
           </div> <!-- row -->
           <div class="row">
-             <div id="seven" class="game-box col-xs-4">
-              <h2>7</h2>
+            <div id="c6" class="c6 game-cell col-xs-4">
             </div> <!-- col-xs-4 -->
-
-            <div id="eight" class="game-box col-xs-4">
-              <h2>8</h2>
+            <div id="c7" class="c7 game-cell col-xs-4">
             </div> <!-- col-xs-4 -->
-
-            <div id="nine" class="game-box col-xs-4">
-              <h2>9</h2>
-            </div>
+            <div id="c8" class="c8 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
           </div> <!-- row -->
+        </div> <!-- id="game-screen3x3" -->
 
-        </div> <!-- gamescreen -->
-      </secton> <!-- right-side -->
+        <!-- RIGHT SIDE DURING GAME ONLY (3x4)-->
+        <div id="game-screen3x4" class="game-screen" style="display: none"> <!-- hide when game ends -->
+          <div class="row">
+            <div id="c0" class="c0 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c1" class="c1 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c2" class="c2 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+          <div class="row">
+            <div id="c3" class="c3 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c4" class="c4 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c5" class="c5 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+          <div class="row">
+            <div id="c6" class="c6 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c7" class="c7 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c8" class="c8 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+          <div class="row">
+            <div id="c9" class="c9 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c10" class="c10 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c11" class="c11 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+        </div> <!-- id="game-screen3x4" -->
+
+        <!-- RIGHT SIDE DURING GAME ONLY (3x5)-->
+        <div id="game-screen3x5" class="game-screen" style="display: none"> <!-- hide when game ends -->
+          <div class="row">
+            <div id="c0" class="c0 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c1" class="c1 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c2" class="c2 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+          <div class="row">
+            <div id="c3" class="c3 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c4" class="c4 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c5" class="c5 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+          <div class="row">
+            <div id="c6" class="c6 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c7" class="c7 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c8" class="c8 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+          <div class="row">
+            <div id="c9" class="c9 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c10" class="c10 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c11" class="c11 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+          <div class="row">
+            <div id="c12" class="c12 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c13" class="c13 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+            <div id="c14" class="c14 game-cell col-xs-4">
+            </div> <!-- col-xs-4 -->
+          </div> <!-- row -->
+        </div> <!-- id="game-screen3x5" -->
+
+      </section> <!-- right-side -->
     </div> <!-- container fluid -->
 
   </body>
