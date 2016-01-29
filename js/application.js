@@ -32,7 +32,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1], //8
                    [1,1,1,1,0,1,1,1,1,0,0,1,1,1,1]];//9
 
-  var fourFour =[[1,1,1,1,1,0,0,1,1,0,0,1,1,1,1,1] //0
+  var fourFour =[[1,1,1,1,1,0,0,1,1,0,0,1,1,1,1,1], //0
                  [1,1,1,0,0,1,1,0,0,1,1,0,1,1,1,1], //1
                  [1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1], //2
                  [1,1,1,1,0,1,1,1,0,0,1,1,1,1,1,1], //3
@@ -44,10 +44,12 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                  [1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1]];//9
 
   var soundIncorrect = new buzz.sound("sounds/incorrect-guess.mp3");
+  var soundCorrect = new buzz.sound("sounds/correct-guess.mp3");
 
   var gridCounter = 0;
   var turnCounter = 0;
   var clicked = false;
+  var DEFAULT_TARGET = 20;
 
   var targetScoreInput;
   var spriteSizeInput;
@@ -66,13 +68,21 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   var $pOneScoreElem = $('#player-one-score').find('h2');
   var $pTwoScoreElem = $('#player-two-score').find('h2');
 
+  init();
+
+  function init () {
+    bindStartButton();  // start function
+    bindUserPass();
+    bindUserGuess();
+    bindReset();
+  }
 
   // STEP 1
   function bindStartButton () {
     $('#start-button').on("click", function(){
       // feat. get input from dropdown
       // feat. depending on what input, show different screen
-      targetScoreInput = $('#set-target-score').val() || 40;
+      targetScoreInput = $('#set-target-score').val() || DEFAULT_TARGET;
       $targetScoreElem.text(targetScoreInput);
 
       spriteSizeInput = $('#set-sprite-size').val() || "3x3";
@@ -115,7 +125,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       orientationChoice = orientationInput[0];
       console.log(orientationChoice);
       if (orientationChoice === "N") {
-        console.log("O1");
+        numberInGrid = numberInGrid;
       }
       else if (orientationChoice === "I") {
         numberInGrid = inverse(numberInGrid);
@@ -142,56 +152,55 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   }
 
   function inverse (array) {
-    var inverseArr = [];
+    var inverseArray = [];
     for (var i = array.length - 1; i >= 0; i--) {
-      var tmp = []
+      var tmp = [];
       for (var j = 0; j < array[i].length; j++){
         tmp.push(array[i][j]);
       }
-      inverseArr.push(tmp);
+      inverseArray.push(tmp);
     }
-    return inverseArr;
+    return inverseArray;
   }
 
   function mirror (array) {
-    var mirrorArr = [];
+    var mirrorArray = [];
     for (var i = 0; i < array.length; i++) {
-      var tmp = []
+      var tmp = [];
       for (var j = array[i].length - 1; 0 <= j ; j--){
         tmp.push(array[i][j]);
       }
-      mirrorArr.push(tmp);
+      mirrorArray.push(tmp);
     }
-    return mirrorArr;
+    return mirrorArray;
   }
 
   function inverseMirror (array) {
-    var inverseMirror = [];
+    var inverseMirrorArray = [];
     for (var i = array.length - 1; i >=0; i--) {
-      inverseMirror.push(array[i]);
+      inverseMirrorArray.push(array[i]);
     }
-    return inverseMirror;
+    return inverseMirrorArray;
   }
 
   function generateNumber () { // generates a random number from the chosen array
     answer = Math.floor(Math.random()*(10));
-    numberInGrid = puzzles[answer]; // need to replace threeThree with a selectable array XXX
-    console.log("gn", numberInGrid); // Logged many times when "coloring in the grid to reset".
+    numberInGrid = puzzles[answer];
+    //console.log("gn", numberInGrid); // will console log an array many times when "coloring in the grid to reset".
   }
 
   function highlightPlayer () {
     if (turnCounter % 2 === 0) {
-      $('#player-one-score').css("background-color","blue").css("border","white solid 2px");
-      $('#player-two-score').css("background-color","red").css("border-color","red");
+      $('#player-one-score').css('background-color','blue').css('border','white solid 2px');
+      $('#player-two-score').css('background-color','red').css('border-color','red');
     }
     else {
-      $('#player-one-score').css("background-color","red").css("border-color","red");
-      $('#player-two-score').css("background-color","blue").css("border","white solid 2px");
+      $('#player-one-score').css('background-color','red').css('border-color','red');
+      $('#player-two-score').css('background-color','blue').css('border','white solid 2px');
     }
   }
 
   function selectCell () {
-
     $('#user-pass').show();
     $('#reset-cells').hide();
 
@@ -202,7 +211,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       if (!clicked) { // when click is false
         var cellId = parseInt($(this).attr('id').substring(1));
         var pixel = numberInGrid[cellId];
-        console.log('sc', numberInGrid)
+        //console.log('sc', numberInGrid)
 
         if(pixel === 1) {
           $('.c' + cellId).css("background-color","black");
@@ -213,10 +222,11 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
         gridCounter = gridCounter + 1;
         clicked = true;
+        // console.log(gridCounter);
+        // if (gridCounter >= numberInGrid.length) {
+        // $userGuessElem1.text("The number is " + answer +".");
+        //}
       }
-
-      bindUserPass();
-      bindUserGuess();
     });
   }
 
@@ -249,25 +259,41 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         if (pOneScore >= targetScoreInput) { // target is reached, end of game
           $userGuessElem1.text("Player One Wins"); // create modal
           $userGuessElem2.text("Thank you for playing numGuess");
+          $('#restart-button').show(); // JUST ADDED]
+          $('#reset-cells').hide(); // JUST ADDED
+          $('#user-pass').hide(); // JUST ADDED
+          $('#user-guess').val('').selectpicker('refresh');
         }
         else if (pTwoScore >= targetScoreInput) {
           $userGuessElem1.text("Player Two Wins");
           $userGuessElem2.text("Thank you for playing numGuess");
-        }
-        else {
-          resetGrid(); // otherwise, generate another number
+          $('#restart-button').show(); // JUST ADDED
+          $('#reset-cells').hide(); // JUST ADDED
+          $('#user-pass').hide(); // JUST ADDED
+          $('#user-guess').val('').selectpicker('refresh');
         }
       }
       $('.options-buttons li').removeClass('selected'); //stop the guess selector from sticking
     });
   }
 
+  function bindReset () {
+    $('#restart-button').on("click", function(){ // JUST ADDED
+      $('#restart-button').hide(); //JUST ADDED
+      $('#start-button').click();
+      $('#reset-cells').click();
+      pOneScore = 0;
+      pTwoScore = 0;
+      $pOneScoreElem.text(pOneScore);
+      $pTwoScoreElem.text(pTwoScore);
+    });
+  }
 
   function calculateScore (userGuess) {
     var pointsAwarded = answer + (numberInGrid.length - gridCounter);
-    console.log("cs", numberInGrid)
+    //console.log("cs", numberInGrid)
     if (userGuess === answer) {
-      // soundCorrect.play()
+      soundCorrect.play();
       if (turnCounter % 2 === 0) {
         $userGuessElem1.text(userGuess + " is correct Player 1!");
         $userGuessElem2.text("You score " + pointsAwarded + " (" + answer + " + " + (numberInGrid.length - gridCounter) + ") point(s).");
@@ -315,17 +341,20 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     $('#user-pass').hide();
     $('#reset-cells').show();
 
-    $('#reset-cells').on("click", function () {
+    $('#reset-cells').off().on("click", function () {
       for(var i = 0; i < numberInGrid.length; i++) {
         $('.game-cell').css("background-color","red");
-        generateNumber();
+        generateNumber(); // ensure that the correct orientation mode is selected
         selectCell();
+        $('#user-guess').val('').selectpicker('refresh');
       }
     });
   }
-
 // ADD SOUND
-// ADD MUSIC - Audio tags in the body.  See info from Carmen.
 
-  bindStartButton();  // start function
+// inverse and mifror arrays returning a white square in 3 by 5
+// how do  ensure that the orientation stays the same throughout the game
+// add text explaining what mode you're in.
+// if nobody guesses the game hangs
+
 }); // do not remove

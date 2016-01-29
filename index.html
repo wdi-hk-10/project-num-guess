@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>numGuess</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
@@ -37,8 +36,9 @@
             <div class="options-buttons col-xs-8 col-xs-push-2"> <!-- options target score -->
               <select id="set-target-score" class="selectpicker col-xs-12" title="Target Score">
                 <option>20</option>
+                <option>30</option>
                 <option>40</option>
-                <option>60</option>
+                <option>50</option>
               </select>
             </div> <!-- options target score -->
           </div>  <!-- row -->
@@ -105,6 +105,7 @@
             </div> <!-- options orientation -->
             <button id="user-pass" class="btn btn-lg btn-default">PASS</button>
             <button id="reset-cells" class="btn btn-lg btn-default" style="display: none">RESET</button>
+            <button id="restart-button" class="btn btn-lg btn-default" style="display: none">RESTART</button>
           </div> <!-- row -->
           <div id="results-text1" class="row">
             <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
@@ -192,62 +193,47 @@
         <div id="game-screen3x5" class="game-screen" style="display: none"> <!-- hide when game ends -->
           <div class="row">
             <div id="c0" class="c0 game-cell col-xs-4">
-              <h2>0</h2>
             </div> <!-- col-xs-4 -->
             <div id="c1" class="c1 game-cell col-xs-4">
-              <h2>1</h2>
             </div> <!-- col-xs-4 -->
             <div id="c2" class="c2 game-cell col-xs-4">
-              <h2>2</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
             <div id="c3" class="c3 game-cell col-xs-4">
-              <h2>3</h2>
             </div> <!-- col-xs-4 -->
             <div id="c4" class="c4 game-cell col-xs-4">
-              <h2>4</h2>
             </div> <!-- col-xs-4 -->
             <div id="c5" class="c5 game-cell col-xs-4">
-              <h2>5</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
             <div id="c6" class="c6 game-cell col-xs-4">
-              <h2>6</h2>
             </div> <!-- col-xs-4 -->
             <div id="c7" class="c7 game-cell col-xs-4">
-              <h2>7</h2>
             </div> <!-- col-xs-4 -->
             <div id="c8" class="c8 game-cell col-xs-4">
-              <h2>8</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
             <div id="c9" class="c9 game-cell col-xs-4">
-              <h2>9</h2>
             </div> <!-- col-xs-4 -->
             <div id="c10" class="c10 game-cell col-xs-4">
-              <h2>10</h2>
             </div> <!-- col-xs-4 -->
             <div id="c11" class="c11 game-cell col-xs-4">
-              <h2>11</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
           <div class="row">
             <div id="c12" class="c12 game-cell col-xs-4">
-              <h2>12</h2>
             </div> <!-- col-xs-4 -->
             <div id="c13" class="c13 game-cell col-xs-4">
-              <h2>13</h2>
             </div> <!-- col-xs-4 -->
             <div id="c14" class="c14 game-cell col-xs-4">
-              <h2>14</h2>
             </div> <!-- col-xs-4 -->
           </div> <!-- row -->
         </div> <!-- id="game-screen3x5" -->
 
-      </secton> <!-- right-side -->
+      </section> <!-- right-side -->
     </div> <!-- container fluid -->
 
   </body>

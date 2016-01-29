@@ -20,5 +20,6 @@ None
 reversing an array
 preventing muliple clicks on the pass button, grid cells
 styling the dropdown boxes
+missing a comma on an array
 
 etc.
