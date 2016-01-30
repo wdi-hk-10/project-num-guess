@@ -1,4 +1,5 @@
 $(document).ready(function(){ // do not remove - insert all code in here!
+
   var threeThree = [[1,1,1,1,0,1,1,1,1], //0
                     [1,1,0,0,1,0,1,1,1], //1
                     [1,1,0,0,1,0,0,1,1], //2
@@ -32,19 +33,9 @@ $(document).ready(function(){ // do not remove - insert all code in here!
                    [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1], //8
                    [1,1,1,1,0,1,1,1,1,0,0,1,1,1,1]];//9
 
-  var fourFour =[[1,1,1,1,1,0,0,1,1,0,0,1,1,1,1,1], //0
-                 [1,1,1,0,0,1,1,0,0,1,1,0,1,1,1,1], //1
-                 [1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1], //2
-                 [1,1,1,1,0,1,1,1,0,0,1,1,1,1,1,1], //3
-                 [1,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1], //4
-                 [1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1], //5
-                 [1,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1], //6
-                 [1,1,1,1,0,0,1,1,0,0,1,1,0,0,1,1], //7
-                 [0,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1], //8
-                 [1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1]];//9
-
   var soundIncorrect = new buzz.sound("sounds/incorrect-guess.mp3");
   var soundCorrect = new buzz.sound("sounds/correct-guess.mp3");
+  var soundButtonClick = new buzz.sound("sounds/button-click.mp3"); // add after fixing event listeners!
 
   var gridCounter = 0;
   var turnCounter = 0;
@@ -59,15 +50,15 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   var numberInGrid;
   var puzzles;
 
-  var $targetScoreElem = $('#target-score').find('h2');
-  var $userGuessElem1 = $('#results-text1').find('h3');
-  var $userGuessElem2 = $('#results-text2').find('h3');
-  var $userGuessElem3 = $('#results-text3').find('h3');
+  var $targetScoreElem = $('#target-score')
+  var $userGuessElem1 = $('#results-text1')
+  var $userGuessElem2 = $('#results-text2')
+  var $userGuessElem3 = $('#results-text3')
 
   var pOneScore = 0;
   var pTwoScore = 0;
-  var $pOneScoreElem = $('#player-one-score').find('h2');
-  var $pTwoScoreElem = $('#player-two-score').find('h2');
+  var $pOneScoreElem = $('#player-one-score')
+  var $pTwoScoreElem = $('#player-two-score')
 
   init(); // start code
 
@@ -78,7 +69,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     bindReset();
   }
 
-  // STEP 1
+  // STEP 1 (This function needs breaking down into smaller chunks)
   function bindStartButton () {
     $('#start-button').on("click", function(){
       // feat. depending on what input, show different screen
@@ -90,21 +81,18 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       var spriteWidth = parseInt(spriteSizeInput[0]);
       var spriteHeight = parseInt(spriteSizeInput[2]);
 
-      console.log(spriteSizeInput)
+      //console.log(spriteSizeInput)
       if (spriteWidth === 3 && spriteHeight === 3)  {
-        console.log("S3");  //remove when finished
         $('#instructions-screen').hide();
         $('#game-screen3x3').show();
         puzzles = threeThree;
       }
       else if (spriteWidth === 3 && spriteHeight === 4) {
-        console.log("S4"); //remove when finished
         $('#instructions-screen').hide();
         $('#game-screen3x4').show();
         puzzles = threeFour;
       }
       else if (spriteWidth === 3 && spriteHeight === 5) {
-        console.log("S5"); //remove when finished
         $('#instructions-screen').hide();
         $('#game-screen3x5').show();
         puzzles = threeFive;
@@ -191,6 +179,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     return oneDArr;
   }
 
+  // This function could be replaced by calling both the above functions
   function inverseMirror (array) {
     var inverseMirrorArray = [];
     for (var i = array.length - 1; i >=0; i--) {
@@ -199,20 +188,20 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     return inverseMirrorArray;
   }
 
-  function generateNumber () { // generates random number from the chosen array
+  // Generates random number from the chosen array
+  function generateNumber () {
     answer = Math.floor(Math.random()*(10));
     numberInGrid = puzzles[answer];
-    //console.log("gn", numberInGrid); // will console log an array many times when "coloring in" the grid to reset.
   }
 
   function highlightPlayer () {
     if (turnCounter % 2 === 0) {
-      $('#player-one-score').css('background-color','blue').css('border','white solid 2px');
-      $('#player-two-score').css('background-color','red').css('border-color','red');
+      $('#player-one').css({'background-color':'blue', 'border':'white solid 2px'});
+      $('#player-two').css({'background-color':'red', 'border-color':'red'});
     }
     else {
-      $('#player-one-score').css('background-color','red').css('border-color','red');
-      $('#player-two-score').css('background-color','blue').css('border','white solid 2px');
+      $('#player-one').css({'background-color':'red', 'border-color':'red'});
+      $('#player-two').css({'background-color':'blue', 'border':'white solid 2px'});
     }
   }
 
@@ -231,10 +220,10 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         var pixel = numberInGrid[cellId];
 
         if(pixel === 1) {
-          $('.c' + cellId).css("background-color","black");
+          $('.c' + cellId).css('background-color', 'black');
         }
         else {
-          $('.c' + cellId).css("background-color","white");
+          $('.c' + cellId).css('background-color', 'white');
         }
 
         gridCounter = gridCounter + 1;
@@ -260,7 +249,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
 
   // STEP 2B
   function bindUserGuess () {
-    $('#guess-button').off().on("change", function() {
+    $('.guess-buttons').off().on("click", function() {
       if (clicked) { // when click is true
         clicked = false;
         var userGuess = parseInt($(this).val());
@@ -278,20 +267,17 @@ $(document).ready(function(){ // do not remove - insert all code in here!
           $('#restart-button').show();
           $('#reset-cells-button').hide();
           $('#pass-button').hide();
-          $('#guess-button').val('').selectpicker('refresh');
         }
         else if (pTwoScore >= targetScoreInput) {
           $userGuessElem3.text("Player Two wins. Thank you for playing numGuess.");
           $('#restart-button').show();
           $('#reset-cells-button').hide();
           $('#pass-button').hide();
-          $('#guess-button').val('').selectpicker('refresh');
         }
       }
-      $('.options-buttons li').removeClass('selected'); //stop guess selector from sticking
     });
   }
-
+  // This function needs fixing
   function bindReset () {
     $('#restart-button').on("click", function(){
       $('#restart-button').hide();
@@ -304,8 +290,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     });
   }
 
-
-
+  // calculates score
   function calculateScore (userGuess) {
     var bonus = (numberInGrid.length - gridCounter);
     var pointsAwarded = answer + bonus;
@@ -317,7 +302,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     }
     else {
       soundIncorrect.play();
-      $userGuessElem1.text("The number is " + answer + " ,not " + userGuess + ".");
+      $userGuessElem1.text("Wrong!  The number is " + answer + ", not " + userGuess + ".");
       $userGuessElem2.text("Your opponent scores " + pointsAwarded + " (" + answer + " + " + bonus + ") point(s).");
     }
     if (turnCounter % 2 === 0 && userGuess === answer || turnCounter % 2 !== 0 && userGuess !== answer)  {
@@ -330,35 +315,32 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     }
   }
 
+  // removes remaining squares to show answer
   function revealAnswer () {
     for(var i = 0; i < numberInGrid.length; i++) {
       if(numberInGrid[i] === 1) {
-        $('.c'+ i).css("background-color","black");
+        $('.c'+ i).css('background-color', 'black');
       }
       else {
-        $('.c'+ i).css("background-color","white");
+        $('.c'+ i).css('background-color', 'white');
       }
     }
   }
 
-  function resetGrid () { // reset grid to background colour
+  // reset grid to background colour
+  function resetGrid () {
     gridCounter = 0;
     $('#pass-button').hide();
     $('#reset-cells-button').show();
 
     $('#reset-cells-button').off().on("click", function () {
       for(var i = 0; i < numberInGrid.length; i++) {
-        $('.game-cell').css("background-color","red");
-        generateNumber(); // ensure that the correct orientation mode is selected
+        $('.game-cell').css('background-color', 'red');
+        generateNumber(); // ensure that correct orientation mode is selected
         selectCell();
-        $('#guess-button').val('').selectpicker('refresh');
       }
     });
   }
 
-// ensure orientation stays the same for each game
-// add text explaining what mode you're in
-// if nobody guesses the game hangs
-// use append to extend grid
 
 }); // do not remove

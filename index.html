@@ -65,56 +65,50 @@
           </div> <!-- row -->
 
           <div class="row">
-              <button type="button" id="start-button" class="btn btn-lg btn-success col-xs-4 col-xs-push-4">Start</button>
+              <button type="button" id="start-button" class="btn btn-lg btn-default col-xs-4 col-xs-push-4">Start</button>
           </div>
 
         </div> <!-- id=options -->
 
         <!-- LEFT SIDE DURING GAME ONLY -->
         <div id="play-box" style="display: none"> <!-- style="display: none"-->
-          <div class="row" id="all-scoreboxes">
-            <div id="player-one-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h3>Player 1</h3>
-              <h2>0</h2>
-            </div> <!-- col-xs-4 -->
-
-            <div id="target-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h3>Target</h3>
-              <h2>0</h2>
-            </div> <!-- col-xs-4 -->
-
-            <div id="player-two-score" class="scorebox col-xs-3 col-xs-push-1">
-              <h3>Player 2</h3>
-              <h2>0</h2>
-            </div> <!-- col-xs-4 -->
-          </div> <!-- row -->
           <div class="row">
-            <div class="options-buttons col-xs-6 col-xs-push-2"> <!-- options orientation -->
-              <select id="guess-button" class="selectpicker col-xs-12" title="Guess Number">
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-              </select>
-            </div> <!-- options orientation -->
+            <div id="player-one" class="scorebox col-xs-3 col-xs-push-1">
+              <p>Player 1</p>
+              <p id="player-one-score">0</p>
+            </div> <!-- col-xs-3 -->
+            <div  class="scorebox col-xs-3 col-xs-push-1">
+              <p>Target</p>
+              <p id="target-score">0</p>
+            </div> <!-- col-xs-3 -->
+            <div id="player-two" class="scorebox col-xs-3 col-xs-push-1">
+              <p>Player 2</p>
+              <p id="player-two-score">0</p>
+            </div> <!-- col-xs-3 -->
+          </div> <!-- row -->
+          <div class="row buttons">
+            <button class="guess-buttons btn btn-default" value="0">0</button>
+            <button class="guess-buttons btn btn-default" value="1">1</button>
+            <button class="guess-buttons btn btn-default" value="2">2</button>
+            <button class="guess-buttons btn btn-default" value="3">3</button>
+            <button class="guess-buttons btn btn-default" value="4">4</button>
+            <button class="guess-buttons btn btn-default" value="5">5</button>
+            <button class="guess-buttons btn btn-default" value="6">6</button>
+            <button class="guess-buttons btn btn-default" value="7">7</button>
+            <button class="guess-buttons btn btn-default" value="8">8</button>
+            <button class="guess-buttons btn btn-default" value="9">9</button>
             <button id="pass-button" class="btn btn-lg btn-default">PASS</button>
-            <button id="reset-cells-button" class="btn btn-lg btn-default" style="display: none">NEW ROUND</button>
+            <button id="reset-cells-button" class="btn btn-lg btn-default" style="display: none">NEXT ROUND</button>
             <button id="restart-button" class="btn btn-lg btn-default" style="display: none">RESTART</button>
           </div> <!-- row -->
-          <div id="results-text1" class="row">
-            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
+          <div class="results-text row">
+            <p id="results-text1"></p> <!-- DO NOT DELETE - ingame text added here -->
            </div> <!-- NB1 row -->
-           <div id="results-text2" class="row">
-            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
+           <div class="results-text row">
+            <p id="results-text2"></p> <!-- DO NOT DELETE - ingame text added here -->
           </div> <!-- NB2 row -->
-          <div id="results-text3" class="row">
-            <h3></h3> <!-- DO NOT DELETE - ingame text added here -->
+          <div class="results-text row">
+            <p id="results-text3"></p> <!-- DO NOT DELETE - ingame text added here -->
           </div> <!-- NB2 row -->
         </div> <!-- play-box -->
       </section> <!-- left side -->
