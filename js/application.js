@@ -1,37 +1,37 @@
 $(document).ready(function(){ // do not remove - insert all code in here!
 
-  var threeThree = [[1,1,1,1,0,1,1,1,1], //0
-                    [1,1,0,0,1,0,1,1,1], //1
-                    [1,1,0,0,1,0,0,1,1], //2
-                    [1,1,1,0,1,1,1,1,1], //3
-                    [1,0,1,1,1,1,0,0,1], //4
-                    [0,1,1,0,1,0,1,1,0], //5
-                    [1,0,0,1,1,1,1,1,1], //6
-                    [1,1,1,0,0,1,0,0,1], //7
-                    [0,1,1,1,1,1,1,1,1], //8
-                    [1,1,1,1,1,1,0,0,1]];//9
+  var size3x3 = [[1,1,1,1,0,1,1,1,1], //0
+                 [1,1,0,0,1,0,1,1,1], //1
+                 [1,1,0,0,1,0,0,1,1], //2
+                 [1,1,1,0,1,1,1,1,1], //3
+                 [1,0,1,1,1,1,0,0,1], //4
+                 [0,1,1,0,1,0,1,1,0], //5
+                 [1,0,0,1,1,1,1,1,1], //6
+                 [1,1,1,0,0,1,0,0,1], //7
+                 [0,1,1,1,1,1,1,1,1], //8
+                 [1,1,1,1,1,1,0,0,1]];//9
 
-  var threeFour = [[1,1,1,1,0,1,1,0,1,1,1,1], //0
-                   [0,1,0,1,1,0,0,1,0,1,1,1], //1
-                   [1,1,0,0,0,1,0,1,0,1,1,1], //2
-                   [1,1,0,0,1,1,0,0,1,1,1,0], //3
-                   [1,0,1,1,1,1,0,0,1,0,0,1], //4
-                   [1,1,1,1,1,0,0,0,1,1,1,0], //5
-                   [1,1,1,1,0,0,1,1,1,1,1,1], //6
-                   [1,1,1,0,0,1,0,1,0,0,1,0], //7
-                   [1,1,1,0,1,0,1,0,1,0,1,0], //8
-                   [1,1,1,1,1,1,0,0,1,1,1,1]];//9
+  var size3x4 = [[1,1,1,1,0,1,1,0,1,1,1,1], //0
+                 [0,1,0,1,1,0,0,1,0,1,1,1], //1
+                 [1,1,0,0,0,1,0,1,0,1,1,1], //2
+                 [1,1,0,0,1,1,0,0,1,1,1,0], //3
+                 [1,0,1,1,1,1,0,0,1,0,0,1], //4
+                 [1,1,1,1,1,0,0,0,1,1,1,0], //5
+                 [1,1,1,1,0,0,1,1,1,1,1,1], //6
+                 [1,1,1,0,0,1,0,1,0,0,1,0], //7
+                 [1,1,1,0,1,0,1,0,1,0,1,0], //8
+                 [1,1,1,1,1,1,0,0,1,1,1,1]];//9
 
-  var threeFive = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1], //0
-                   [0,1,0,1,1,0,0,1,0,0,1,0,1,1,1], //1
-                   [1,1,1,0,0,1,1,1,1,1,0,0,1,1,1], //2
-                   [1,1,1,0,0,1,1,1,1,0,0,1,1,1,1], //3
-                   [1,0,1,1,0,1,1,1,1,0,0,1,0,0,1], //4
-                   [1,1,1,1,0,0,1,1,1,0,0,1,1,1,1], //5
-                   [1,1,1,1,0,0,1,1,1,1,0,1,1,1,1], //6
-                   [1,1,1,0,0,1,0,1,0,1,0,0,1,0,0], //7
-                   [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1], //8
-                   [1,1,1,1,0,1,1,1,1,0,0,1,1,1,1]];//9
+  var size3x5 = [[1,1,1,1,0,1,1,0,1,1,0,1,1,1,1], //0
+                 [0,1,0,1,1,0,0,1,0,0,1,0,1,1,1], //1
+                 [1,1,1,0,0,1,1,1,1,1,0,0,1,1,1], //2
+                 [1,1,1,0,0,1,1,1,1,0,0,1,1,1,1], //3
+                 [1,0,1,1,0,1,1,1,1,0,0,1,0,0,1], //4
+                 [1,1,1,1,0,0,1,1,1,0,0,1,1,1,1], //5
+                 [1,1,1,1,0,0,1,1,1,1,0,1,1,1,1], //6
+                 [1,1,1,0,0,1,0,1,0,1,0,0,1,0,0], //7
+                 [1,1,1,1,0,1,1,1,1,1,0,1,1,1,1], //8
+                 [1,1,1,1,0,1,1,1,1,0,0,1,1,1,1]];//9
 
   var soundIncorrect = new buzz.sound("sounds/incorrect-guess.mp3");
   var soundCorrect = new buzz.sound("sounds/correct-guess.mp3");
@@ -50,15 +50,8 @@ $(document).ready(function(){ // do not remove - insert all code in here!
   var numberInGrid;
   var puzzles;
 
-  var $targetScoreElem = $('#target-score')
-  var $userGuessElem1 = $('#results-text1')
-  var $userGuessElem2 = $('#results-text2')
-  var $userGuessElem3 = $('#results-text3')
-
   var pOneScore = 0;
   var pTwoScore = 0;
-  var $pOneScoreElem = $('#player-one-score')
-  var $pTwoScoreElem = $('#player-two-score')
 
   init(); // start code
 
@@ -74,7 +67,7 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     $('#start-button').on("click", function(){
       // feat. depending on what input, show different screen
       targetScoreInput = $('#set-target-score').val() || DEFAULT_TARGET;
-      $targetScoreElem.text(targetScoreInput);
+      $('#target-score').text(targetScoreInput);
 
       spriteSizeInput = $('#set-sprite-size').val() || "3x3";
 
@@ -85,17 +78,17 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       if (spriteWidth === 3 && spriteHeight === 3)  {
         $('#instructions-screen').hide();
         $('#game-screen3x3').show();
-        puzzles = threeThree;
+        puzzles = size3x3;
       }
       else if (spriteWidth === 3 && spriteHeight === 4) {
         $('#instructions-screen').hide();
         $('#game-screen3x4').show();
-        puzzles = threeFour;
+        puzzles = size3x4;
       }
       else if (spriteWidth === 3 && spriteHeight === 5) {
         $('#instructions-screen').hide();
         $('#game-screen3x5').show();
-        puzzles = threeFive;
+        puzzles = size3x5;
       }
       else {
         console.log("You've broken numGuess!");
@@ -209,9 +202,9 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     $('#pass-button').show();
     $('#reset-cells-button').hide();
 
-    $userGuessElem1.text("");
-    $userGuessElem2.text("");
-    $userGuessElem3.text("");
+    $('#results-text1').text("");
+    $('#results-text2').text("");
+    $('#results-text3').text("");
 
 
     $('.game-cell').on("click", function() {
@@ -263,13 +256,13 @@ $(document).ready(function(){ // do not remove - insert all code in here!
         resetGrid();
 
         if (pOneScore >= targetScoreInput) { // target is reached, end of game
-          $userGuessElem3.text("Player One wins.  Thank you for playing numGuess."); // create modal
+          $('#results-text3').text("Player 1 wins.  Thank you for playing."); // create modal
           $('#restart-button').show();
           $('#reset-cells-button').hide();
           $('#pass-button').hide();
         }
         else if (pTwoScore >= targetScoreInput) {
-          $userGuessElem3.text("Player Two wins. Thank you for playing numGuess.");
+          $('#results-text3').text("Player 2 wins. Thank you for playing.");
           $('#restart-button').show();
           $('#reset-cells-button').hide();
           $('#pass-button').hide();
@@ -285,8 +278,8 @@ $(document).ready(function(){ // do not remove - insert all code in here!
       $('#reset-cells-button').click();
       pOneScore = 0; // fix
       pTwoScore = 0; // fix
-      $pOneScoreElem.text(pOneScore); // fix
-      $pTwoScoreElem.text(pTwoScore); // fix
+      $('#player-one-score').text(pOneScore); // fix
+      $('#player-two-score').text(pTwoScore); // fix
     });
   }
 
@@ -297,21 +290,21 @@ $(document).ready(function(){ // do not remove - insert all code in here!
     //console.log("cs", numberInGrid)
     if (userGuess === answer) {
       soundCorrect.play();
-      $userGuessElem1.text("The number " + userGuess + " is correct!");
-      $userGuessElem2.text("You score " + pointsAwarded + " (" + answer + " + " + bonus + ") point(s).");
+      $('#results-text1').text("The number " + userGuess + " is correct!");
+      $('#results-text2').text("You score " + pointsAwarded + " (" + answer + " + " + bonus + ") point(s).");
     }
     else {
       soundIncorrect.play();
-      $userGuessElem1.text("Wrong!  The number is " + answer + ", not " + userGuess + ".");
-      $userGuessElem2.text("Your opponent scores " + pointsAwarded + " (" + answer + " + " + bonus + ") point(s).");
+      $('#results-text1').text("Wrong!  The number is " + answer + ", not " + userGuess + ".");
+      $('#results-text2').text("Your opponent scores " + pointsAwarded + " (" + answer + " + " + bonus + ") point(s).");
     }
     if (turnCounter % 2 === 0 && userGuess === answer || turnCounter % 2 !== 0 && userGuess !== answer)  {
       pOneScore = pOneScore + pointsAwarded;
-      $pOneScoreElem.text(pOneScore);
+      $('#player-one-score').text(pOneScore);
     }
     else {
       pTwoScore = pTwoScore + pointsAwarded;
-      $pTwoScoreElem.text(pTwoScore);
+      $('#player-two-score').text(pTwoScore);
     }
   }
 
